@@ -53,13 +53,6 @@
                     $("color-changers-l" + i + "red").click( function() { $('#l'+i).css('color','red'); } );
 
                     */
-					
-
-                    
-
-                    
-					
-				
 					$( "#l"+i ).draggable();
 
 
@@ -75,6 +68,7 @@
             $("#l"+i).click(function(evt){
                   $(".brainstormCard").css('border-color','#4850B7');
                   $(this).css('border-color','#CBD271');
+
             })
 
             i++;
@@ -88,7 +82,20 @@
 				}
 			})
 
+      $(".category").droppable({
+        drop: function(event, ui) {
+          //ui.draggable.detach().appendTo($(this));
 
+          
+          var draggableID = ui.draggable.prop("id");
+          var draggablewords = $(draggableID).val();
+          alert(draggablewords);
+          $(this).val("HUNGRY HIPPOS");
+            //$(this).val() + "<br>" + draggablewords);
+          ui.draggable.remove();
+          
+        }
+      });
 
 			
       });
@@ -165,8 +172,16 @@
       .trashcan{
       	height:10%;
       	background-color: grey;
-
       }
+
+      .category {
+        width:100%;
+        height:30%;
+        background-color: red;
+        border-color: blue;
+        border-style: solid; 
+      }
+
       </style>
 </head>
 <body>
@@ -180,7 +195,10 @@
 </div>
 </div>
 <div id="sidebar" class="rightbar">
-</div>
+  <div id="catagory1" class = "category"> Category 1 </div>
+  <div id="catagory2" class = "category"> Category 2 </div>
+  <div id="catagory3" class = "category"> Category 3 </div>
+  </div>
 <div id="trash" class="trashcan"> Trash </div>
 </body>
 </html>

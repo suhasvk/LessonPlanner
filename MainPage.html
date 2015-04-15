@@ -1,47 +1,52 @@
 <!-- MainPage.html -->
 <html>
     <head>
-    	<script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
-        <style type='text/css'>
-            span {
-/*                text-decoration:underline;*/
-                color:white;
-                cursor:pointer;
-            }
-        </style>
-        <script>
-            // show the given page, hide the rest
-            function show(elementID) {
-                // try to find the requested page and alert if it's not found
-                var pageName;
-
-                switch (elementID){
-                	case 'courseInfo':
-                		pageName = 'CourseInfo.html';
-                		break;
-
-                	case 'lessonPlanning':
-                		pageName = 'LessonPlanning.html';
-                		break;
-
-                	case 'brainstorming':
-                		pageName = 'Brainstorming.html';
-                		break;
-                }
-
-                $('#CurrentPage').load(pageName)
-            }
-        </script>
+		<link type="text/css" href="lesson_planner.css" rel="stylesheet" />
+		<link type="text/css" href="resources/jquery-ui/jquery-ui.css" rel="stylesheet" />
+		<script type="text/javascript" src="resources/jquery-ui/external/jquery/jquery.js"></script>
+		<script type="text/javascript" src="resources/jquery-ui/jquery-ui.js"></script>	
+		<script type="text/javascript" src="MainPage.js"></script>
     </head>
     <body>
-    	<!-- This should be replaced by tab layout -->
-      <div style="width: 100%; background-color: blue;">
-        Show page 
-            <span onclick="show('courseInfo');">Course Info</span>, 
-            <span onclick="show('lessonPlanning');">Lesson Planning</span>, 
-            <span onclick="show('brainstorming');">Brainstorming</span>.
-        </div>
-
-    <div id="CurrentPage"></div>
+		<div id="header"><img id="logo" src="logo.png">
+			<span class="header_link">Home</span>
+			<span class="header_link">My Courses</span>
+			<span class="header_link">My Lessons</span>
+			<span class="header_link">Profile</span>
+			<span class="header_link">Contact</span>
+			<span class="header_link">Log Out</span>
+		</div>
+		
+		<div id="tabs">
+			<ul>
+				<li><a href="#tabs-1">Course Info</a></li>
+				<li><a href="#tabs-2">Lesson Planning</a></li>
+				<li><a href="#tabs-3">Brainstorming</a></li>
+			</ul>
+			<div id="tabs-1">
+				<div id="CourseInfo"></div>
+			</div>
+			<div id="tabs-2">
+				<div id="Brainstorming"></div>
+			</div>
+			<div id="tabs-3">
+				<div id="LessonPlanning"></div>
+			</div>
+			
+			<div id="sidebar">
+				<div class="org_lesson">
+					<span class="org_lesson_header">Class 1 Wed 2/4/15</span>
+					<ul id="sortable">
+					  <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 1</li>
+					  <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 2</li>
+					  <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 3</li>
+					  <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 4</li>
+					  <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 5</li>
+					  <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 6</li>
+					  <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 7</li>
+					</ul>
+				</div>
+			</div>
+		</div>
     </body>
 </html>
