@@ -3,21 +3,20 @@
 var Timeline = function(totalTime){
 
 	this.totalTime = totalTime;
-	this.itemList = [];
-	this.durationList = [];
+	this.itemMap = {};
 
-	this.doCheckRep = true;
+	this.addItemWithName = function(name){
+		//
 
-	this.checkRep = function() {
-		assertTrue(this.durationList.length == this.itemList.length);
+		// var new_item = new LessonItem()
 	}
 
-	this.addItem = function(item, targetIndex, duration){
-		
+	this.addItemWithTime = function(start, end){
+
 	}
 
 	this.changeItemLength = function(itemIndex, newDuration){
-		if newDuration
+		
 	}
 
 	////////////////////////////////////////////////

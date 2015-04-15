@@ -17,7 +17,7 @@
       <link type="text/css" href="resources/css/ui-lightness/jquery-ui-1.10.0.custom.css" rel="stylesheet" />
 
        <script type="text/javascript" src="lessonItem.js"></script>
-       <script type="text/javascript" src="timeline.js"
+       <script type="text/javascript" src="timeline.js"></script>
 
       <script>
 
@@ -57,6 +57,21 @@
           currentLesson = parseInt(lessonNum);
         });
 
+        // elements.itemList.sortable({
+        //   'start': function (event, ui) {
+        // //jQuery Ui-Sortable Overlay Offset Fix
+        // if ($.browser.webkit) {
+        //     wscrolltop = $(window).scrollTop();
+        // }
+        //     },
+        //     'sort': function (event, ui) {
+        //         //jQuery Ui-Sortable Overlay Offset Fix
+        //         if ($.browser.webkit) {
+        //             ui.helper.css({ 'top': ui.position.top + wscrolltop + 'px' });
+        //         }
+        //     }
+        // });
+
         var r = new RangeBar({
             readonly: false,
             min: 0,
@@ -79,12 +94,14 @@
               //interval: 15, // provide instead of count to specify the space between labels
              label:function(num){return num}// string or function to write as the text of a label. functions are called with normalised values.
             },
-                          rangeClass: 'bar',
+            rangeClass: 'bar',
             allowSwap: true
         });
 
+        console.log('poo');
+
           $('#timeline').prepend(r.$el).on('changing', function(ev, ranges) {
-            console.log('changed'+ JSON.stringify(ranges,null,2));
+            // console.log('changed'+ JSON.stringify(ranges,null,2));
           });
           $('.cardBox').sortable({
             axis: 'x'
@@ -110,18 +127,23 @@
 
               //ADD CARD TO TIMELINE
               if (num < 4){
-                $('#cardBox' + currentLesson).children('#con'+num.toString()).append(newEvent);
+                $('#cardBox' + currentLesson).append(newEvent);
+                $(newEvent).css('width',$('#timeline').width().toString()/4+'px');
+                $(window).resize(function(evt){
+                  $(newEvent).css('width',$('#timeline').width().toString()/4+'px');
+                });
               }
 
               //NEEDS FIX!!!!
               else {
-                var newContainer = document.createElement("td");
-                newContainer.id = "con"+num.toString();
-                newContainer.className = "cardContainer";
-                $(newContainer).append(newEvent);
-                $(newContainer).css('width',(100/num).toString()+'%');
-                $('.cardContainer').css('width',(100/num).toString()+'%');
-                $('#cardBox' + currentLesson.toString()).append(newContainer);   
+                $('#cardBox' + currentLesson).append(newEvent);
+                console.log(num);
+                $(newEvent).css('width',($('#timeline').width()/(num+1)).toString() + 'px');
+                $('.evtCard').css('width',($('#timeline').width()/(num+1)).toString() +'px');
+                $('#cardBox' + currentLesson.toString()).append(newEvent);
+                $(window).resize(function(evt){
+                  $(newEvent).css('width',($('#timeline').width()/(num+1)).toString());
+                });
               }
           }
         });
@@ -131,6 +153,7 @@
       <style>
       *{
             margin-top: auto;
+            font-family: sans-serif;
       }
       .lessonCard{
             width: 80%;
@@ -140,7 +163,6 @@
             border-radius: 10px;
             border-color: #4850B7;
             color: #4850B7;
-            font-family: sans-serif;
             margin: auto;
             margin-top: 15px;
             margin-bottom: 15px;
@@ -151,14 +173,15 @@
         height:80%;
         border-radius: 15px;
         background-color: #C2F496;
-        position:relative;
+        position:relative
         top: 0px;
+        float: left;
       }
 
-      .cardContainer{
-        width: 25%;
-        height: 100%;
-      }
+      .cardBox{
+        width: 100%;
+        float:left;
+        }
 
       #timeline div[class^='elessar']{
         height: 100%;
@@ -187,22 +210,14 @@
 <div id="main_area" style="width: 75%; height: 100%; float: left; margin: auto;" >
 <input type="text" id='newItemInputArea' style="width: 100%; height: 50px; font-size: 15pt; border-color: #FCC675; border-style: solid; border-width: 3px; border-radius: 15px; margin-top: 15px;" placeholder="Enter a learning objective and press enter."></input>
 
-<div id="timeline" style="width: 100%; margin-top: 15px; height: 50px; border-radius: 5px; float:left; background-color:#83B083; border-style:solid; border-color:#1D5581" ></div>
+<div id="timeline" style="width: 100%; margin-top: 15px; height: 50px; border-radius: 5px; background-color:#83B083; border-style:solid; border-color:#1D5581;font-size:15pt;font-color:#576D43 "><span class="vanish" style="font-size:15pt;font-color:#576D43;top:100px; position:absolute;">Or click directly on the timeline!</span></div>
 
-<table id = "cardTable" style = "width:100%;height:100%; margin-top: 15px;">
-  <tr id = "cardBox0" class="cardBox">
-    <td id = "con0" class = "cardContainer"></td>
-    <td id = "con1" class = "cardContainer"></td>
-    <td id = "con2" class = "cardContainer"></td>
-    <td id = "con3" class = "cardContainer"></td>
-</tr>
-<tr id = "cardBox1" class="cardBox">
-  <td id = "con0" class = "cardContainer"></td>
-    <td id = "con1" class = "cardContainer"></td>
-    <td id = "con2" class = "cardContainer"></td>
-    <td id = "con3" class = "cardContainer"></td>
-</tr>
-</table>
+<div id = "cardTable" style = "position:absolute;width:100%;height:100%; margin-top: 15px;float:left;">
+<div id = "cardBox0" class="cardBox">
+</div>
+<div id = "cardBox1" class="cardBox">
+</div>
+</div>
 </div>
 
 <div id="sidebar" style="float: right; height: 100%; width: 20%; border-color: #86CCDD; border-style: solid; border-radius: 15px; margin-right: 10px;">
