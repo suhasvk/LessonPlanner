@@ -1,0 +1,47 @@
+<!-- MainPage.html -->
+<html>
+    <head>
+    	<script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+        <style type='text/css'>
+            span {
+/*                text-decoration:underline;*/
+                color:white;
+                cursor:pointer;
+            }
+        </style>
+        <script>
+            // show the given page, hide the rest
+            function show(elementID) {
+                // try to find the requested page and alert if it's not found
+                var pageName;
+
+                switch (elementID){
+                	case 'courseInfo':
+                		pageName = 'CourseInfo.html';
+                		break;
+
+                	case 'lessonPlanning':
+                		pageName = 'LessonPlanning.html';
+                		break;
+
+                	case 'brainstorming':
+                		pageName = 'Brainstorming.html';
+                		break;
+                }
+
+                $('#CurrentPage').load(pageName)
+            }
+        </script>
+    </head>
+    <body>
+    	<!-- This should be replaced by tab layout -->
+      <div style="width: 100%; background-color: blue;">
+        Show page 
+            <span onclick="show('courseInfo');">Course Info</span>, 
+            <span onclick="show('lessonPlanning');">Lesson Planning</span>, 
+            <span onclick="show('brainstorming');">Brainstorming</span>.
+        </div>
+
+    <div id="CurrentPage"></div>
+    </body>
+</html>

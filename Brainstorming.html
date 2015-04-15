@@ -1,0 +1,186 @@
+<!-- Brainstorming.html --><html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+      <!-- KNOCKOUT IMPORT -->
+      <script type="text/javascript" src="resources/js/knockout-3.2.0.js"></script>
+      <!-- JQUERY -->
+      <script type="text/javascript" src="resources/js/jquery-1.9.0.min.js"></script>
+
+      <!--Draggable-->
+		<script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
+      <script>
+
+
+      var timeLineList = [];
+      var currentTimeLine;
+
+      $(document).ready(function(){
+
+      		//This function exists for current cards
+      		$(".brainstormCard").hover(function(evt){
+                  $(this).css('background-color','#B7A8D2');
+            }, function(evt){
+                  $(this).css('background-color','#fff');
+            });
+
+            $(".brainstormCard").click(function(evt){
+                  $(".brainstormCard").css('border-color','#4850B7');
+                  $(this).css('border-color','#CBD271');
+            })
+
+            
+			$( ".brainstormCard" ).draggable();
+
+			//This function set creates the cards
+            var i = 4;
+			$("#cardmaker").keypress(function(e) {
+				if (e.which == 13) {
+                  e.preventDefault();
+                  var current = $("#cardmaker").val()
+                    $("<div />", { id:"l"+i, class:"brainstormCard", html: current })
+                       .appendTo("#secondary");
+                    $("#cardmaker").val("");
+
+                    /* CANNOT GET COLORS TO WORK
+
+                    //create the color buttons
+                    $("<button />", { id:"color-changers-l" + i + "red", class:"red",  html: "-"})
+
+                    .appendTo("#l"+i);
+
+                    //color
+                    $("color-changers-l" + i + "red").click( function() { $('#l'+i).css('color','red'); } );
+
+                    */
+					
+
+                    
+
+                    
+					
+				
+					$( "#l"+i ).draggable();
+
+
+                }
+			  
+
+			  $("#l"+i).hover(function(evt){
+                  $(this).css('background-color','#B7A8D2');
+            }, function(evt){
+                  $(this).css('background-color','#fff');
+            });
+
+            $("#l"+i).click(function(evt){
+                  $(".brainstormCard").css('border-color','#4850B7');
+                  $(this).css('border-color','#CBD271');
+            })
+
+            i++;
+			  
+			});
+
+			//Trash deletion
+			$("#trash").droppable({
+				drop: function(event, ui) {
+					ui.draggable.remove();
+				}
+			})
+
+
+
+			
+      });
+      </script>
+      <style>
+      .makeCard{
+	      	width: 75%; 
+	      	height: 50px; 
+	      	font-size: 15pt; 
+	      	border-color: #FCC675; 
+	      	border-style: solid; 
+	      	border-width: 3px; 
+	      	border-radius: 15px; 
+	      	margin: auto;
+            margin-top: 15px;
+            margin-bottom: 15px;
+      }
+
+		/* may need absolute positioning to prevent snapping after deletion. Either that Or I'll make containers for each card and delete just the card*/      
+      .brainstormCard{
+            width: 20%;
+            height: 100px;
+            background-color: #fff;
+            border-style: solid;
+            border-radius: 10px;
+            border-color: #4850B7;
+            color: #4850B7;
+            font-family: sans-serif;
+            float: left;
+            margin: auto;
+            margin-top: 15px;
+            margin-bottom: 15px;
+      }
+
+      .red {
+      	background-color: red;
+      	width: 30%;
+      }
+
+      .blue {
+      	background-color: blue;
+      }
+
+      .yellow {
+      	background-color: yellow;
+      }
+
+      .close{
+      	float: right;
+      	background-color: red;
+
+      }
+
+      .areatwo {
+      	width: 75%;
+  		margin: auto;
+        margin-top: 15px;
+        margin-bottom: 15px;
+        float:left;
+
+
+      }
+
+      .rightbar{
+      	float: right; 
+      	height: 100%; 
+      	width: 20%; 
+      	border-color: #86CCDD; 
+      	border-style: solid; 
+      	border-radius: 15px; 
+      	margin-right: 10px;"
+      }
+
+      .trashcan{
+      	height:10%;
+      	background-color: grey;
+
+      }
+      </style>
+</head>
+<body>
+<div id="main_area" class="areatwo" >
+<input id='cardmaker' class="makecard" value="Enter Course Objective"></input>
+</div>
+<div id="secondary" class="areatwo" >
+<div id="l1" class="brainstormCard"> Lesson 1 </div>
+<div id="l2" class="brainstormCard"> Lesson 2 </div>
+<div id="l3" class="brainstormCard"> Lesson 3 </div>
+</div>
+</div>
+<div id="sidebar" class="rightbar">
+</div>
+<div id="trash" class="trashcan"> Trash </div>
+</body>
+</html>

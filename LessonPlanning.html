@@ -1,0 +1,217 @@
+<!-- LessonPlanning.html -->
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+      <!-- KNOCKOUT IMPORT -->
+      <script type="text/javascript" src="resources/js/knockout-3.2.0.js"></script>
+      <!-- JQUERY -->
+      <script type="text/javascript" src="resources/js/jquery-1.9.0.min.js"></script>
+      <!-- ELESSAR SLIDER -->
+      <script type="text/javascript" src="resources/js/elessar.min.js"></script>
+      <link rel="stylesheet" type="text/css" href="resources/css/elessar.css"></script>
+      <!-- MOMENT.JS -->
+      <script type="text/javascript" src="resources/js/moment.min.js"></script>
+      <!-- JQUERY UI -->
+      <script type="text/javascript" src="resources/js/jquery-ui-1.10.0.custom.min.js"></script>
+      <!-- JQUERY UI LIGHTNESS THEME -->
+      <link type="text/css" href="resources/css/ui-lightness/jquery-ui-1.10.0.custom.css" rel="stylesheet" />
+
+       <script type="text/javascript" src="lessonItem.js"></script>
+       <script type="text/javascript" src="timeline.js"
+
+      <script>
+
+
+
+      var lessonList = {0:[], 1:[]}; //Gets list of lessons
+      var currentLesson = 0; //This variable stores the current timeline
+      var classLength = 90; //Length of a class, in minutes
+
+      $(document).ready(function(){
+        //-------------
+        //POPULATE PAGE
+        //-------------
+
+        //MAKE NECESSARY CONTAINERS (MAYBE AS LESSONS ARE CREATED IN PREV. PAGE)
+
+        //
+
+
+
+
+
+      	$(".lessonCard").hover(
+          function(evt){
+            $(this).css('background-color','#B7A8D2');
+          },
+          function(evt){
+            $(this).css('background-color','#fff');
+        });
+
+        $(".lessonCard").click(function(evt){
+          $(".lessonCard").css('border-color','#4850B7');
+          $(this).css('border-color','#EAE853');
+          var lessonNum = $(this).attr('id')[1];
+          $('#cardBox' + lessonNum).show();
+          $('#cardBox' + currentLesson).hide();
+          currentLesson = parseInt(lessonNum);
+        });
+
+        var r = new RangeBar({
+            readonly: false,
+            min: 0,
+            max: classLength,
+            valueFormat: function(ts) {
+              return parseInt(ts);
+            },
+            valueParse: function(date) {
+              return date;
+            },
+
+            label: function(a){
+              return a;
+            },
+            snap: 5,
+            minSize: 10,
+            barClass: 'progress',
+            bgMarks: {
+              count:10,
+              //interval: 15, // provide instead of count to specify the space between labels
+             label:function(num){return num}// string or function to write as the text of a label. functions are called with normalised values.
+            },
+                          rangeClass: 'bar',
+            allowSwap: true
+        });
+
+          $('#timeline').prepend(r.$el).on('changing', function(ev, ranges) {
+            console.log('changed'+ JSON.stringify(ranges,null,2));
+          });
+          $('.cardBox').sortable({
+            axis: 'x'
+          });
+
+         $('#newItemInputArea').keypress(function(evt){
+           if(evt.which == 13) {
+
+              //MAKES NEW EVENT CARD (MORE TO DO)
+              var newEvent = document.createElement("div");
+              var num = lessonList[currentLesson].length;
+              newEvent.id = "evtCard"+currentLesson.toString()+":"+num;
+              newEvent.className = "evtCard";
+
+              //UPDATE THIS LINE TO FORMAT CARD
+              $(newEvent).html($(this).val());
+
+              //ADD LESSON OBJECT TO LIST OF LESSONS
+              lessonList[currentLesson].push(new LessonItem($(this).val()));
+
+              //CLEAR INPUT AREA
+              $(this).val('');
+
+              //ADD CARD TO TIMELINE
+              if (num < 4){
+                $('#cardBox' + currentLesson).children('#con'+num.toString()).append(newEvent);
+              }
+
+              //NEEDS FIX!!!!
+              else {
+                var newContainer = document.createElement("td");
+                newContainer.id = "con"+num.toString();
+                newContainer.className = "cardContainer";
+                $(newContainer).append(newEvent);
+                $(newContainer).css('width',(100/num).toString()+'%');
+                $('.cardContainer').css('width',(100/num).toString()+'%');
+                $('#cardBox' + currentLesson.toString()).append(newContainer);   
+              }
+          }
+        });
+
+      });
+      </script>
+      <style>
+      *{
+            margin-top: auto;
+      }
+      .lessonCard{
+            width: 80%;
+            height: 100px;
+            background-color: #fff;
+            border-style: solid;
+            border-radius: 10px;
+            border-color: #4850B7;
+            color: #4850B7;
+            font-family: sans-serif;
+            margin: auto;
+            margin-top: 15px;
+            margin-bottom: 15px;
+      }
+
+      .evtCard{
+        width:100%;
+        height:80%;
+        border-radius: 15px;
+        background-color: #C2F496;
+        position:relative;
+        top: 0px;
+      }
+
+      .cardContainer{
+        width: 25%;
+        height: 100%;
+      }
+
+      #timeline div[class^='elessar']{
+        height: 100%;
+      }
+
+      .elessar-rangebar{
+        background-color: #83B083;
+      }
+
+      .elessar-range{
+        background-color: #C2F496;
+      }
+
+      .elessar-handle{
+        background-color: #1D5581;
+      }
+
+      html {
+        height: 100%;
+      }
+
+      </style>
+</head>
+
+<body>
+<div id="main_area" style="width: 75%; height: 100%; float: left; margin: auto;" >
+<input type="text" id='newItemInputArea' style="width: 100%; height: 50px; font-size: 15pt; border-color: #FCC675; border-style: solid; border-width: 3px; border-radius: 15px; margin-top: 15px;" placeholder="Enter a learning objective and press enter."></input>
+
+<div id="timeline" style="width: 100%; margin-top: 15px; height: 50px; border-radius: 5px; float:left; background-color:#83B083; border-style:solid; border-color:#1D5581" ></div>
+
+<table id = "cardTable" style = "width:100%;height:100%; margin-top: 15px;">
+  <tr id = "cardBox0" class="cardBox">
+    <td id = "con0" class = "cardContainer"></td>
+    <td id = "con1" class = "cardContainer"></td>
+    <td id = "con2" class = "cardContainer"></td>
+    <td id = "con3" class = "cardContainer"></td>
+</tr>
+<tr id = "cardBox1" class="cardBox">
+  <td id = "con0" class = "cardContainer"></td>
+    <td id = "con1" class = "cardContainer"></td>
+    <td id = "con2" class = "cardContainer"></td>
+    <td id = "con3" class = "cardContainer"></td>
+</tr>
+</table>
+</div>
+
+<div id="sidebar" style="float: right; height: 100%; width: 20%; border-color: #86CCDD; border-style: solid; border-radius: 15px; margin-right: 10px;">
+<div id="l0" class="lessonCard" style="border-color: #EAE853"> Lesson 1 </div>
+<div id="l1" class="lessonCard"> Lesson 2 </div>
+
+</body>
+<script>
+
+
+</script>
+</html>
