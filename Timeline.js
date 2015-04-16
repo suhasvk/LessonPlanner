@@ -1,19 +1,24 @@
 // Timeline.js
 
-var Timeline = function(totalTime){
-
+var Timeline = function(num, totalTime){
+	this.num = num;
 	this.totalTime = totalTime;
 	this.itemMap = {};
+	this.numItems = 0;
+
 
 	this.addItemWithName = function(name){
-		for item in this.itemMap
+		for item in this.itemMap {
+			var current_time = itemMap[item].getDuration()
+			var new_time = parseInt(((this.totalTime-10)/totalTime)*current_time);
+			itemMap[item].setDuration(new_time);
+		}
+		itemMap['name'] = new LessonItem(name, 10, this.numItems+1);
+		this.numItems++;
 	}
+	
 
-	this.addItemWithTime = function(start, end){
-
-	}
-
-	this.changeItemLength = function(itemIndex, newDuration){
+	this.changeItemLength = function(data){
 		
 	}
 
