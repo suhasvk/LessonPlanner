@@ -22,8 +22,7 @@
 
 
 
-      var lessonList = {0:[], 1:[]}; //Gets list of lessons
-      var num
+      var lessonList = {0:[], 1:[]}; //Gets list of cards for each lesson;
       var currentLesson = 0; //This variable stores the current timeline
       var classLength = 100; //Length of a class, in minutes
 
@@ -44,15 +43,37 @@
             });
 
 
-            buildCard = function(description)
-              var newEvent = document.createElement("div");
-              var num = lessonList[currentLesson].length;
-              newEvent.id = "evtCard"+currentLesson.toString()+":"+num;
-              newEvent.className = "evtCard";
-
+            buildCard = function(newEvent, description){
+              
+              var timeInfo = document.createElement("div");
+              var tag = document.createElement("a");
               var durationBox = document.createElement("input");
+
+              var text = document.createElement("p");
+
               durationBox.type = "text";
-              durationBox.placeholder = "Enter duration.";
+              durationBox.placeholder = "#Mins?";
+              timeInfo.style.position = "relative";
+              durationBox.style.width = '60px';
+              durationBox.style.height = "40px";
+              durationBox.style.fontSize = "15pt"
+              timeInfo.style.top = 3*$(newEvent).height() / 5 + "px";
+              timeInfo.style.left = ($(newEvent).width() -  50)/ 2 + "px";
+              $(timeInfo).append(durationBox);
+              $(timeInfo).append(document.createElement("br"));
+              $(timeInfo).append(document.createElement("br"));
+              $(window).resize(function(evt){
+                timeInfo.style.top = 3*$(newEvent).height() / 5 + "px";
+                timeInfo.style.left = ($(newEvent).width() -  50)/ 2 + "px";
+              });
+              tag.style.marginTop = "20px";
+              $(tag).html("Minutes");
+              $(timeInfo).append(tag);
+
+
+
+
+              $(newEvent).append(timeInfo);
             }
 
             var r = new RangeBar({
@@ -78,8 +99,8 @@
                   //interval: 15, // provide instead of count to specify the space between labels
                  label:function(num){return num}// string or function to write as the text of a label. functions are called with normalised values.
                 },
-                              rangeClass: 'bar',
-                allowSwap: true
+                rangeClass: 'bar',
+                allowSwap: false
               });
 
 
@@ -95,9 +116,14 @@
 
          $('#newItemInputArea').keypress(function(evt){
            if(evt.which == 13 && $(this).val().length > 0) {
+              
+              var newEvent = document.createElement("div");
+              var num = lessonList[currentLesson].length;
+              newEvent.id = "evtCard"+currentLesson.toString()+":"+num;
+              newEvent.className = "evtCard";
 
               //MAKES NEW EVENT CARD (MORE TO DO)
-              var newEvent = buildCard($(this).val());
+              var description = $(this).val();
 
               //ADD LESSON OBJECT TO LIST OF LESSONS
               lessonList[currentLesson].push(new LessonItem($(this).val()));
@@ -119,6 +145,8 @@
                 $('.cardContainer').css('width',(100/(num+1) - 5).toString()+'%');
                 $('#cardBox' + currentLesson.toString()).append(newContainer);  
               }
+
+              buildCard(newEvent, description);
           }
         });
 
@@ -127,6 +155,7 @@
       <style>
       *{
             margin-top: auto;
+            font-family: sans-serif;
             /*overflow: auto;*/
       }
       .lessonCard{
