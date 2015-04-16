@@ -6,9 +6,7 @@ var Timeline = function(totalTime){
 	this.itemMap = {};
 
 	this.addItemWithName = function(name){
-		//
-
-		// var new_item = new LessonItem()
+		for item in this.itemMap
 	}
 
 	this.addItemWithTime = function(start, end){
