@@ -47,6 +47,16 @@ html {
 	border-bottom: 6px;
 	border-style: solid;
 	border-color: #6cc57d;
+	text-decoration: none;
+}
+
+.header-link:hover {
+	color: white;
+	text-shadow:
+    -1px -1px 0 #a2f282,
+    1px -1px 0 #a2f282,
+    -1px 1px 0 #a2f282,
+    1px 1px 0 #a2f282; 
 }
 
 #header-underline {
