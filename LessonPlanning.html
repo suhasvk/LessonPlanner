@@ -26,6 +26,18 @@
       var currentLesson = 0; //This variable stores the current timeline
       var classLength = 100; //Length of a class, in minutes
 
+
+      Array.prototype.move = function (old_index, new_index) {
+        if (new_index >= this.length) {
+          var k = new_index - this.length;
+          while ((k--) + 1) {
+            this.push(undefined);
+          }
+        }
+        this.splice(new_index, 0, this.splice(old_index, 1)[0]);
+        return this; // for testing purposes
+      };
+
       $(document).ready(function(){
       	$(".lessonCard").hover(function(evt){
                   $(this).css('background-color','#B7A8D2');
@@ -41,40 +53,6 @@
                   $('#cardBox' + currentLesson).hide();
                   currentLesson = parseInt(lessonNum);
             });
-
-
-            buildCard = function(newEvent, description){
-              
-              var timeInfo = document.createElement("div");
-              var tag = document.createElement("a");
-              var durationBox = document.createElement("input");
-
-              var text = document.createElement("p");
-
-              durationBox.type = "text";
-              durationBox.placeholder = "#Mins?";
-              timeInfo.style.position = "relative";
-              durationBox.style.width = '60px';
-              durationBox.style.height = "40px";
-              durationBox.style.fontSize = "15pt"
-              timeInfo.style.top = 3*$(newEvent).height() / 5 + "px";
-              timeInfo.style.left = ($(newEvent).width() -  50)/ 2 + "px";
-              $(timeInfo).append(durationBox);
-              $(timeInfo).append(document.createElement("br"));
-              $(timeInfo).append(document.createElement("br"));
-              $(window).resize(function(evt){
-                timeInfo.style.top = 3*$(newEvent).height() / 5 + "px";
-                timeInfo.style.left = ($(newEvent).width() -  50)/ 2 + "px";
-              });
-              tag.style.marginTop = "20px";
-              $(tag).html("Minutes");
-              $(timeInfo).append(tag);
-
-
-
-
-              $(newEvent).append(timeInfo);
-            }
 
             var r = new RangeBar({
                 values: [[0,classLength/4],[classLength/4,2*classLength/4],[2*classLength/4,3*classLength/4],[3*classLength/4,classLength]],
@@ -103,6 +81,60 @@
                 allowSwap: false
               });
 
+            buildCard = function(newEvent, description){
+              
+              var timeInfo = document.createElement("div");
+              var tag = document.createElement("a");
+              var durationBox = document.createElement("input");
+
+              var text = document.createElement("p");
+
+              durationBox.type = "text";
+              durationBox.placeholder = "#Mins?";
+              timeInfo.style.position = "relative";
+              durationBox.style.width = '60px';
+              durationBox.style.height = "40px";
+              durationBox.style.fontSize = "15pt"
+              timeInfo.style.top = 3*$(newEvent).height() / 5 + "px";
+              timeInfo.style.left = ($(newEvent).width() -  50)/ 2 + "px";
+              $(timeInfo).append(durationBox);
+              $(timeInfo).append(document.createElement("br"));
+              $(timeInfo).append(document.createElement("br"));
+              $(window).resize(function(evt){
+                timeInfo.style.top = 3*$(newEvent).height() / 5 + "px";
+                timeInfo.style.left = ($(newEvent).width() -  50)/ 2 + "px";
+              });
+
+              $(durationBox).keypress(function(evt){
+               if(evt.which == 13 && $(this).val().length > 0) {
+                var index = $(this).closest('.cardContainer').index();
+                var new_time = $(this).val();
+                if (parseInt(r.val()[index][0])+parseInt(new_time) > parseInt(r.val()[index + 1][1])){
+                  $(this).val('');
+                  alert("Too long! Shorten previous events first.");
+                  // $(this)[0].placeholder = "Too long!"
+                }
+                else{
+                  var vals = r.val()
+                  vals[index][1] = parseInt(vals[index][0]) + parseInt(new_time);
+                  vals[index+1][0] = parseInt(vals[index][0]) + parseInt(new_time) + 1;
+                  r.val(vals);
+                  $('#newItemInputArea').focus();
+                }
+               }
+             });
+              tag.style.marginTop = "20px";
+              $(tag).html("Minutes");
+              $(timeInfo).append(tag);
+
+
+
+
+              $(newEvent).append(timeInfo);
+            }
+
+            
+
 
 
           $('#timeline').prepend(r.$el);
@@ -111,7 +143,19 @@
 
           $('.cardBox').sortable({
             axis: 'x',
-            helper: 'clone'
+            helper: 'clone',
+            start: function(e, ui) {
+        // creates a temporary attribute on the element with the old index
+                $(this).attr('data-previndex', ui.item.index());
+            },
+            // update: function(e, ui) {
+            //     // gets the new and old index then removes the temporary attribute
+            //     var newIndex = ui.item.index();
+            //     var oldIndex = $(this).attr('data-previndex');
+            //     $(this).removeAttr('data-previndex');
+            //     new_vals = r.val().move(oldIndex,newIndex);
+            //     r.val(new_vals);
+            // }
           });
 
          $('#newItemInputArea').keypress(function(evt){

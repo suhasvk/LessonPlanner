@@ -10,10 +10,11 @@ html {
 
 #header-bg {
 	background-color: #9bdb92;
-	width: 100%;
+	width: 105%;
+	min-width: 1250px;
 	position: absolute;
 	height: 65px;
-	left: 0px;
+	left: -15px;
 }
 
 #header {
@@ -21,12 +22,11 @@ html {
 	width: 1200px;
 	height: 100px;
 	left: 0px;
-	top: 0px;
 }
 
 #logo {
 	position: relative;
-	top: 20px;
+	top: 11px;
 	left: 0px;
 }
 
@@ -63,7 +63,7 @@ html {
 
 #header-underline {
 	position: relative;
-	top: 13px;
+	top: 3px;
 	left: 50px;
 	border-width: 1px;
 	border-style: solid;
