@@ -1,6 +1,6 @@
 
       $(document).ready(function(){
-
+	  
       		//This function exists for current cards
       		$(".brainstormCard").hover(function(evt){
                   $(this).css('background-color','#B7A8D2');
