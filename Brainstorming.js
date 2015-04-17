@@ -1,6 +1,6 @@
 
       $(document).ready(function(){
-
+	  
       		//This function exists for current cards
       		$(".brainstormCard").hover(function(evt){
                   $(this).css('background-color','#B7A8D2');
@@ -55,32 +55,26 @@
 
             })
 
+            //trash deletion, only works here for main page
+            $("#trash").droppable({
+        drop: function(event, ui) {
+          ui.draggable.remove();
+        }
+      })
+
             i++;
 			  
 			});
 
-			//Trash deletion
+      /*
 			$("#trash").droppable({
-				drop: function(event, ui) {
-					ui.draggable.remove();
-				}
-			})
-
-      $(".class").droppable({
         drop: function(event, ui) {
-          //ui.draggable.detach().appendTo($(this));
-
-          
-          //* THIS IS THE WORDS thingy
-          var draggablewords = ui.draggable.html();
-          var currentwords = $(this).html();
-          alert(currentwords + "<br>" + draggablewords);
-          $(this).html(currentwords+"<br>"+draggablewords);
-          //ui.draggable.remove();
-          
-          
+          ui.draggable.remove();
         }
-      });
+      })
+      */
+
+      
 
 			
       });
