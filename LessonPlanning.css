@@ -22,20 +22,23 @@
 .evtCard {
     width: 100%;
     height: 80%;
-    border-radius: 15px;
+    border-radius: 10px;
     background-color: #C2F496;
     position: relative;
     top: 0px;
     /*margin-left: 10px;*/
     
-    margin-top: 15px;
+    margin: 10px;
     border-style: solid;
     border-color: #1D5581;
+	border-width: 1px;
+	padding: 10px;
+	text-shadow: none;
 }
 
 .timeline {
     position: relative;
-    width: 100%;
+    width: 700px;
     margin-top: 15px;
     height: 50px;
     border-radius: 5px;
@@ -43,6 +46,7 @@
     background-color: #83B083;
     border-style: solid;
     border-color: #1D5581;
+	border-width: 0px;
 }
 
 .textInputArea{
@@ -78,22 +82,6 @@
     border-style: solid;
     border-width: 3px;
 }
-/*#timeline div[class^='elessar']{
-height: 100%;
-}
-
-.elessar-rangebar{
-background-color: #83B083;
-}
-
-.elessar-range{
-background-color: #C2F496;
-}
-
-.elessar-handle{
-
-
-}*/
 
 td {
     vertical-align: top;

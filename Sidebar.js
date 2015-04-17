@@ -7,11 +7,11 @@ $(document).ready(
     $("#classmaker").keypress(function(e) {
         if (e.which == 13) {
             var current = $("#classmaker").val()
-            $("<div />", { id:"l"+i, class:"lessonCard", html: current })
+            $("<div />", { id:"l"+i, class:"class", html: current })
             .appendTo("#areaOne");
               $("#classmaker").val("");
 
-              $(".lessonCard").droppable({
+              $(".class").droppable({
                   drop: function(event, ui) {
                     //ui.draggable.detach().appendTo($(this));
 
@@ -35,16 +35,16 @@ $(document).ready(
                   }
                 });
 
-                  $(".lessonCard").hover(function(evt){
+                  $(".class").hover(function(evt){
                           $(this).css('background-color','#B7A8D2');
                     }, function(evt){
                           $(this).css('background-color','#fff');
                     });
 
-                    // $(".lessonCard").click(function(evt){
+                    // $(".class").click(function(evt){
                     //       $('#resizableTimeline').colResizable({disable:true});
 
-                    //       $(".lessonCard").css('border-color','#4850B7');
+                    //       $(".class").css('border-color','#4850B7');
                     //       $(this).css('border-color','#EAE853');
                     //       var lessonNum = $(this).attr('id')[1];
                     //       console.log('#cardBox' + lessonNum);
