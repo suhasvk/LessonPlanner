@@ -22,6 +22,10 @@
 	text-shadow: none;
 }
 
+.class:hover{
+	background-color: #CBED59;
+}
+
 
 .card{
 	width: 95%;

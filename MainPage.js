@@ -1,5 +1,5 @@
 $(function() {
 	$("#tabs").tabs();
-	$("#OrganizationSidebar").load("Sidebar.html");
+	// $("#OrganizationSidebar").load("Sidebar.html");
 	//$("#sortable").sortable();
 });
