@@ -1,0 +1,49 @@
+html {
+    background-color: #FFFFFF;
+}
+
+body {
+	width: 1200px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#header {
+	background-color: #9bdb92;
+	position: relative;
+	width: 1200px;
+	height: 60px;
+	left: 0px;
+	top: 0px;
+}
+
+#header_link {
+	color: white;
+	line-height: 100px;
+	padding-left: 15px;
+}
+
+#logo {
+	position: relative;
+	top: 15px;
+	left: 15px;
+}
+
+#tabs {
+	position: relative;
+	width: 800px;
+	top: 0px;
+	height: 600px;
+}
+
+#sidebar {
+	position: absolute;
+	top: 0px;
+	left: 800px;
+	width: 400px;
+	height: 600px;
+}
+
+.org_lesson_header {
+	color: black;
+}
