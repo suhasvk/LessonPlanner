@@ -78,30 +78,6 @@ $(document).ready(function(){
 	//HANDLE INPUTS
 	//-------------
 
-  	$(".lessonCard").hover(function(evt){
-          $(this).css('background-color','#B7A8D2');
-    }, function(evt){
-          $(this).css('background-color','#fff');
-    });
-
-    $(".lessonCard").click(function(evt){
-          $('#resizableTimeline').colResizable({disable:true});
-
-          $(".lessonCard").css('border-color','#4850B7');
-          $(this).css('border-color','#EAE853');
-          var lessonNum = $(this).attr('id')[1];
-          $('#cardBox' + lessonNum).show();
-          $('#cardBox' + currentTimeLine).hide();
-          
-          $('#timelineContents'+currentTimeLine).detach();
-          $('#resizableTimeline').append(timelineObjContainer[lessonNum]);
-          $(timelineObjContainer[lessonNum]).show();
-          currentTimeLine = parseInt(lessonNum);
-          $('#resizableTimeline').colResizable({
-            liveDrag:true,
-            onResize: dragHandler
-          });
-    });
 
 	//Handles event that user permutes cards
   	$('.cardBox').sortable({

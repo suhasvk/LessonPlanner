@@ -9,7 +9,30 @@
 		<script type="text/javascript" src="resources/jquery.mobile-1.4.5/jquery.mobile-1.4.5.js"></script>	
 		<script type="text/javascript" src="MainPage.js"></script>
 		<link type="text/css" href="MainPage.css" rel="stylesheet" />
-		
+
+    <!-- COLRESIZABLE -->
+      <script type="text/javascript" src="resources/js/colResizable-1.5.min.js"></script>
+
+	<!-- SUHAS JS IMPORTS -->
+      <script type="text/javascript" src="LessonItem.js"></script>
+      <script type="text/javascript" src="TimelineEvent.js"></script>
+      <script type="text/javascript" src="Timeline.js"></script>
+      <script type="text/javascript" src="LessonPlanning.js"></script>
+
+    <!--SUHAS STYLE SHEET -->
+      <link type="text/css" href="LessonPlanning.css" rel = "stylesheet"></link>
+
+
+	<!-- REECE'S STUFF -->
+
+	<!-- BRAINSTORMING -->
+	<script type="text/javascript" src="Brainstorming.js"></script>
+	<link rel="stylesheet" type="text/css" href="Brainstorming.css" />
+
+	<!-- SIDEBAR -->
+	<script type="text/javascript" src="Sidebar.js"></script>
+	<link rel="stylesheet" type="text/css" href="Sidebar.css" />
+
     </head>
 	<div id="header-bg"></div>
     <body>
@@ -37,14 +60,44 @@
 					<div id="CourseInfo"></div>
 				</div>
 				<div id="tabs-2">
-					<div id="Brainstorming"></div>
+					<div id="Brainstorming">
+							<div id="main_area" class="areatwo" >
+							<input id='cardmaker' class="objective-entry-field" placeholder="Enter a learning objective and press enter."></input-->
+							<div id="trash" class="trashcan"><div id="trash-label">TRASH</div></div>
+							</div>
+							<div id="secondary" class="areatwo" >
+							<!-- For the sake of trash bug
+							<div id="l1" class="brainstormCard"> Lesson 1 </div>
+							<div id="l2" class="brainstormCard"> Lesson 2 </div>
+							<div id="l3" class="brainstormCard"> Lesson 3 </div> -->
+							</div>
+					</div>
 				</div>
 				<div id="tabs-3">
-					<div id="LessonPlanning"></div>
+					<div id="LessonPlanning">
+						<div id="main_area" style="width: 75%; height: 100%; float: left; margin: auto;" >
+
+						<input type="text" id='newItemInputArea' class="textInputArea" placeholder="Enter a learning objective and press enter."></input>
+
+						<table id="resizableTimeline" class="timeline">
+						</table>
+
+						<table id = "cardTable" class = "cardTable">
+						</table>
+						</div>
+
+						<div id="sidebar" style=" display:none; float: right; height: 100%; width: 20%; border-color: #86CCDD; border-style: solid; border-radius: 15px; margin-right: 10px;">
+						<div id="l0" class="lessonCard" style="border-color: #EAE853"> Lesson 1 </div>
+						<div id="l1" class="lessonCard"> Lesson 2 </div>
+						</div>
+					</div>
 				</div>
 				
 				<div id="sidebar">
-					<div id="OrganizationSidebar"></div>
+					<div id="OrganizationSidebar">
+						<input id="classmaker" placeholder="Enter a class name and press enter."></input-->
+						<div id="areaOne" class='area'></div>
+					</div>
 				</div>
 			</div>
 		</div>
