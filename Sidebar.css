@@ -5,18 +5,12 @@
 	margin-right: 10px;"
 }
 
-.brainstormCard{
-	width: 120px;
-	height: 80px;
-	background-color: #fff;
-	border-style: solid;
-	border-radius: 10px;
-	border-color: #4850B7;
-	color: #4850B7;
-	font-family: sans-serif;
-	margin: auto;
-	margin-top: 15px;
-	margin-bottom: 15px;
+.card-selected {
+	background-color: yellow;
+}
+
+.card-hover {
+	background-color: gray;
 }
 
 .class {

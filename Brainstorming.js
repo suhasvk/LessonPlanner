@@ -3,14 +3,15 @@
 	  
       		//This function exists for current cards
       		$(".brainstormCard").hover(function(evt){
-                  $(this).css('background-color','#B7A8D2');
+				  $(this).addClass("card-hover");
             }, function(evt){
-                  $(this).css('background-color','#fff');
+				  $(this).removeClass("card-hover");
             });
 
             $(".brainstormCard").click(function(evt){
-                  $(".brainstormCard").css('border-color','#4850B7');
-                  $(this).css('border-color','#CBD271');
+			
+				  $(".brainstormCard").removeClass("card-selected");
+				  $(this).addClass("card-selected");
             })
 
             
@@ -44,15 +45,14 @@
 			  
 
 			  $("#l"+i).hover(function(evt){
-                  $(this).css('background-color','#B7A8D2');
+				  $(this).addClass("card-hover");
             }, function(evt){
-                  $(this).css('background-color','#fff');
+				  $(this).removeClass("card-hover");
             });
 
             $("#l"+i).click(function(evt){
-                  $(".brainstormCard").css('border-color','#4850B7');
-                  $(this).css('border-color','#CBD271');
-
+				  $(".brainstormCard").removeClass("card-selected");
+                  $(this).addClass("card-selected");
             })
 
             //trash deletion, only works here for main page
