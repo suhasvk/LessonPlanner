@@ -1,67 +1,101 @@
-*{
-	margin-top: auto;
-	font-family: sans-serif;
-	/*overflow: auto;*/
+
+/*LessonPlaning.css*/
+
+* {
+    margin-top: auto;
+    font-family: sans-serif;
+    /*overflow: auto;*/
 }
-.lessonCard{
-	width: 80%;
-	height: 100px;
-	background-color: #fff;
-	border-style: solid;
-	border-radius: 10px;
-	border-color: #4850B7;
-	color: #4850B7;
-	font-family: sans-serif;
-	margin: auto;
-	margin-top: 15px;
-	margin-bottom: 15px;
+.lessonCard {
+    width: 80%;
+    height: 100px;
+    background-color: #fff;
+    border-style: solid;
+    border-radius: 10px;
+    border-color: #4850B7;
+    color: #4850B7;
+    font-family: sans-serif;
+    margin: auto;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+.evtCard {
+    width: 100%;
+    height: 80%;
+    border-radius: 15px;
+    background-color: #C2F496;
+    position: relative;
+    top: 0px;
+    /*margin-left: 10px;*/
+    
+    margin-top: 15px;
+    border-style: solid;
+    border-color: #1D5581;
+}
+.timeline {
+    position: relative;
+    width: 100%;
+    margin-top: 15px;
+    height: 50px;
+    border-radius: 5px;
+    float: left;
+    background-color: #83B083;
+    border-style: solid;
+    border-color: #1D5581;
 }
 
-.evtCard{
-	width:100%;
-	height:80%;
-	border-radius: 15px;
-	background-color: #C2F496;
-	position:relative;
-	top: 0px;
-	/*margin-left: 10px;*/
-	margin-top: 15px;
-	border-style: solid;
-	border-color: #1D5581;
+.textInputArea{
+    width: 100%; 
+    height: 50px; 
+    font-size: 15pt;
+    border-color: #FCC675;
+    border-style: solid;
+    border-width: 3px;
+    border-radius: 15px;
+    margin-top: 15px;
 }
 
-.cardContainer{
-	width: 25%;
-	height: 100%;
-	padding: 10px;
-
+.cardContainer {
+    height: 100%;
+    padding: 10px;
+}
+.cardBox {
+    top: 10px;
 }
 
-.cardBox{
-	top: 10px;
+.cardTable{
+    width:100%;
+    height:400px;
+    margin-top: 15px;
+    border-collapse: collapse;
 }
 
-#timeline div[class^='elessar']{
-	height: 100%;
+.timelineDisplayItem{
+    background-color: #C2F496;
+    border-color: #1D5581;
+    border-style: solid;
+    border-width: 3px;
+}
+/*#timeline div[class^='elessar']{
+height: 100%;
 }
 
 .elessar-rangebar{
-	background-color: #83B083;
+background-color: #83B083;
 }
 
 .elessar-range{
-	background-color: #C2F496;
+background-color: #C2F496;
 }
 
 .elessar-handle{
-	background-color: #1D5581;
 
 
-}
+}*/
 
-td{
-	vertical-align: top;
+td {
+    vertical-align: top;
 }
 html {
-	height: 100%;
+    height: 100%;
 }

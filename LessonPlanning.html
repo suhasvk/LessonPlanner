@@ -2,229 +2,45 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-      <!-- KNOCKOUT IMPORT -->
+    <!-- KNOCKOUT IMPORT -->
       <script type="text/javascript" src="resources/js/knockout-3.2.0.js"></script>
-      <!-- JQUERY -->
+    <!-- JQUERY -->
       <script type="text/javascript" src="resources/js/jquery-1.9.0.min.js"></script>
-      <!-- ELESSAR SLIDER -->
-      <script type="text/javascript" src="resources/js/elessar.min.js"></script>
-      <link rel="stylesheet" type="text/css" href="resources/css/elessar.css"></script>
-      <!-- MOMENT.JS -->
+    <!-- COLRESIZABLE -->
+      <script type="text/javascript" src="resources/js/colResizable-1.5.min.js"></script>
+    <!-- MOMENT.JS -->
       <script type="text/javascript" src="resources/js/moment.min.js"></script>
-      <!-- JQUERY UI -->
+    <!-- JQUERY UI -->
       <script type="text/javascript" src="resources/js/jquery-ui-1.10.0.custom.min.js"></script>
-      <!-- JQUERY UI LIGHTNESS THEME -->
-      <link type="text/css" href="resources/css/ui-lightness/jquery-ui-1.10.0.custom.css" rel="stylesheet" />
+    <!-- JQUERY UI LIGHTNESS THEME -->
+      <link type="text/css" href="resources/css/ui-lightness/jquery-ui-1.10.0.custom.css" rel="stylesheet"> </link>
 
-       <script type="text/javascript" src="LessonItem.js"></script>
+    <!-- OUR JS IMPORTS -->
+      <script type="text/javascript" src="LessonItem.js"></script>
+      <script type="text/javascript" src="TimelineEvent.js"></script>
+      <script type="text/javascript" src="Timeline.js"></script>
+      <script type="text/javascript" src="LessonPlanning.js"></script>
 
-		<link type="text/css" href="LessonPlanning.css" rel="stylesheet" />
-      <script>
-
-
-
-      var lessonList = {0:[], 1:[]}; //Gets list of cards for each lesson;
-      var currentLesson = 0; //This variable stores the current timeline
-      var classLength = 100; //Length of a class, in minutes
-
-
-      Array.prototype.move = function (old_index, new_index) {
-        if (new_index >= this.length) {
-          var k = new_index - this.length;
-          while ((k--) + 1) {
-            this.push(undefined);
-          }
-        }
-        this.splice(new_index, 0, this.splice(old_index, 1)[0]);
-        return this; // for testing purposes
-      };
-
-      $(document).ready(function(){
-      	$(".lessonCard").hover(function(evt){
-                  $(this).css('background-color','#B7A8D2');
-            }, function(evt){
-                  $(this).css('background-color','#fff');
-            });
-
-            $(".lessonCard").click(function(evt){
-                  $(".lessonCard").css('border-color','#4850B7');
-                  $(this).css('border-color','#EAE853');
-                  var lessonNum = $(this).attr('id')[1];
-                  $('#cardBox' + lessonNum).show();
-                  $('#cardBox' + currentLesson).hide();
-                  currentLesson = parseInt(lessonNum);
-            });
-
-            var r = new RangeBar({
-                values: [[0,classLength/4],[classLength/4,2*classLength/4],[2*classLength/4,3*classLength/4],[3*classLength/4,classLength]],
-                readonly: false,
-                min: 0,
-                max: classLength,
-                valueFormat: function(ts) {
-                  return parseInt(ts);
-                },
-                valueParse: function(date) {
-                  return date;
-                },
-
-                label: function(a){
-                  return a;
-                },
-                snap: 5,
-                minSize: 10,
-                barClass: 'progress',
-                bgMarks: {
-                  count:10,
-                  //interval: 15, // provide instead of count to specify the space between labels
-                 label:function(num){return num}// string or function to write as the text of a label. functions are called with normalised values.
-                },
-                rangeClass: 'bar',
-                allowSwap: false
-              });
-
-            buildCard = function(newEvent, description){
-              
-              var timeInfo = document.createElement("div");
-              var tag = document.createElement("a");
-              var durationBox = document.createElement("input");
-
-              var text = document.createElement("p");
-
-              durationBox.type = "text";
-              durationBox.placeholder = "#Mins?";
-              timeInfo.style.position = "relative";
-              durationBox.style.width = '60px';
-              durationBox.style.height = "40px";
-              durationBox.style.fontSize = "15pt"
-              timeInfo.style.top = 3*$(newEvent).height() / 5 + "px";
-              timeInfo.style.left = ($(newEvent).width() -  50)/ 2 + "px";
-              $(timeInfo).append(durationBox);
-              $(timeInfo).append(document.createElement("br"));
-              $(timeInfo).append(document.createElement("br"));
-              $(window).resize(function(evt){
-                timeInfo.style.top = 3*$(newEvent).height() / 5 + "px";
-                timeInfo.style.left = ($(newEvent).width() -  50)/ 2 + "px";
-              });
-
-              $(durationBox).keypress(function(evt){
-               if(evt.which == 13 && $(this).val().length > 0) {
-                var index = $(this).closest('.cardContainer').index();
-                var new_time = $(this).val();
-                if (parseInt(r.val()[index][0])+parseInt(new_time) > parseInt(r.val()[index + 1][1])){
-                  $(this).val('');
-                  alert("Too long! Shorten previous events first.");
-                  // $(this)[0].placeholder = "Too long!"
-                }
-                else{
-                  var vals = r.val()
-                  vals[index][1] = parseInt(vals[index][0]) + parseInt(new_time);
-                  vals[index+1][0] = parseInt(vals[index][0]) + parseInt(new_time) + 1;
-                  r.val(vals);
-                  $('#newItemInputArea').focus();
-                }
-               }
-             });
-              tag.style.marginTop = "20px";
-              $(tag).html("Minutes");
-              $(timeInfo).append(tag);
-
-
-
-
-              $(newEvent).append(timeInfo);
-            }
-
-            
-
-
-
-          $('#timeline').prepend(r.$el);
-
-          $('#timeline').find().css('pointer-events','none');
-
-          $('.cardBox').sortable({
-            axis: 'x',
-            helper: 'clone',
-            start: function(e, ui) {
-        // creates a temporary attribute on the element with the old index
-                $(this).attr('data-previndex', ui.item.index());
-            },
-            // update: function(e, ui) {
-            //     // gets the new and old index then removes the temporary attribute
-            //     var newIndex = ui.item.index();
-            //     var oldIndex = $(this).attr('data-previndex');
-            //     $(this).removeAttr('data-previndex');
-            //     new_vals = r.val().move(oldIndex,newIndex);
-            //     r.val(new_vals);
-            // }
-          });
-
-         $('#newItemInputArea').keypress(function(evt){
-           if(evt.which == 13 && $(this).val().length > 0) {
-              
-              var newEvent = document.createElement("div");
-              var num = lessonList[currentLesson].length;
-              newEvent.id = "evtCard"+currentLesson.toString()+":"+num;
-              newEvent.className = "evtCard";
-
-              //MAKES NEW EVENT CARD (MORE TO DO)
-              var description = $(this).val();
-
-              //ADD LESSON OBJECT TO LIST OF LESSONS
-              lessonList[currentLesson].push(new LessonItem($(this).val()));
-
-              //CLEAR INPUT AREA
-              $(this).val('');
-
-              //ADD CARD TO TIMELINE
-              if (num < 4){
-                $('#cardBox' + currentLesson).children('#con'+num.toString()).append(newEvent);
-              }
-
-              else {
-                var newContainer = document.createElement("td");
-                newContainer.id = "con"+num.toString();
-                newContainer.className = "cardContainer";
-                $(newContainer).append(newEvent);
-                $(newContainer).css('width',(100/(num+1) - 5).toString()+'%');
-                $('.cardContainer').css('width',(100/(num+1) - 5).toString()+'%');
-                $('#cardBox' + currentLesson.toString()).append(newContainer);  
-              }
-
-              buildCard(newEvent, description);
-          }
-        });
-
-      });
-      </script>
+    <!--OUR STYLE SHEET -->
+      <link type="text/css" href="LessonPlanning.css" rel = "stylesheet"></link>
 </head>
 
 <body>
 <div id="main_area" style="width: 75%; height: 100%; float: left; margin: auto;" >
-<input type="text" id='newItemInputArea' class="objective-entry-field" placeholder="Enter a learning objective and press enter."></input>
 
-<div id="timeline" style="position: relative; width: 100%; margin-top: 15px; height: 50px; border-radius: 5px; float:left; background-color:#83B083; border-style:solid; border-color:#1D5581" ></div>
+<input type="text" id='newItemInputArea' class="textInputArea" placeholder="Enter a learning objective and press enter."></input>
 
-<table id = "cardTable" style = "width:100%;height:400px; margin-top: 15px; border-collapse: collapse;">
-  <tr id = "cardBox0" class="cardBox">
-    <td id = "con0" class = "cardContainer"></td>
-    <td id = "con1" class = "cardContainer"></td>
-    <td id = "con2" class = "cardContainer"></td>
-    <td id = "con3" class = "cardContainer"></td>
-</tr>
-<tr id = "cardBox1" class="cardBox">
-  <td id = "con0" class = "cardContainer"></td>
-    <td id = "con1" class = "cardContainer"></td>
-    <td id = "con2" class = "cardContainer"></td>
-    <td id = "con3" class = "cardContainer"></td>
-</tr>
-</table>
+  <table id="resizableTimeline" class="timeline">
+  </table>
+
+  <table id = "cardTable" class = "cardTable">
+  </table>
 </div>
 
 <div id="sidebar" style="float: right; height: 100%; width: 20%; border-color: #86CCDD; border-style: solid; border-radius: 15px; margin-right: 10px;">
-<div id="l0" class="lessonCard" style="border-color: #EAE853"> Lesson 1 </div>
-<div id="l1" class="lessonCard"> Lesson 2 </div>
-
+  <div id="l0" class="lessonCard" style="border-color: #EAE853"> Lesson 1 </div>
+  <div id="l1" class="lessonCard"> Lesson 2 </div>
+</div>
 </body>
 <script>
 
