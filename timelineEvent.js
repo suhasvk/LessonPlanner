@@ -1,6 +1,5 @@
-// timelineEvent.js
-
-var TimeLineEvent = function(type, data){
-	self.type = type;
-	self.data = data;
+// TimelineEvent.js
+TimelineEvent = function(type, data){
+	this.type = type;
+	this.data = data;
 }

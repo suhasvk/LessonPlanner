@@ -27,3 +27,9 @@
 	border-color: blue;
 	border-style: solid; 
 }
+
+.card {
+	background-color: blue;
+	border-color: grey;
+	border-style: solid;
+}
