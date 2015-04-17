@@ -32,6 +32,7 @@
     border-style: solid;
     border-color: #1D5581;
 }
+
 .timeline {
     position: relative;
     width: 100%;
@@ -59,6 +60,7 @@
     height: 100%;
     padding: 10px;
 }
+
 .cardBox {
     top: 10px;
 }
