@@ -1,10 +1,9 @@
 // LessonItem.js
 
-LessonItem = function(text, start, end){
+LessonItem = function(text, duration){
 
 	this.text = text;
-	this.duration = start-end;
-	this.timeRange = [start,end];
+	this.duration = duration;
 	this.color = 'blue';
 
 	this.getDuration = function(){
@@ -19,12 +18,12 @@ LessonItem = function(text, start, end){
 		this.text = text;
 	}
 
-	this.setColor = function(color){
-		this.color = color;
+	this.setDuration = function(duration){
+		this.duration = duration;
 	}
 
-	this.setTimes = function(start, end){
-		this.timeRange = [start, end];
+	this.setColor = function(color){
+		this.color = color;
 	}
 
 	////////////////////////////////////////////////
