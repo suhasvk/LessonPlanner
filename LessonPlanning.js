@@ -193,8 +193,13 @@ $(document).ready(function(){
           var oldIndex = parseInt(evt.data.oldIndex);
           var newIndex = parseInt(evt.data.newIndex);
           $('#resizableTimeline').colResizable({disable:true});
-          var guy_to_move = $('#timelineContents'+currentTimeLine.toString()).children(':nth-child('+(oldIndex+1).toString()+')').detach();
-          $('#timelineContents'+currentTimeLine.toString()).children(':nth-child('+(newIndex+1).toString()+')').before(guy_to_move);
+          var guy_to_move = $($('#timelineContents'+currentTimeLine.toString()).children()[oldIndex]).detach();
+          if (newIndex >= ($('#timelineContents'+currentTimeLine.toString()).children()).length){
+            $('#timelineContents'+currentTimeLine.toString()).append(guy_to_move);
+          }
+          else{
+            $($('#timelineContents'+currentTimeLine.toString()).children()[newIndex]).before(guy_to_move);
+          }
           $('#resizableTimeline').colResizable({
             liveDrag:true,
             onResize: dragHandler
@@ -209,9 +214,6 @@ $(document).ready(function(){
           var index = parseInt(evt.data.index);
 
           var scaleFactor = evt.data.scaleFactor;
-          console.log(index);
-          console.log($('#timelineContents'+currentTimeLine.toString()).children(':nth-child('+(index+1).toString()+')'));
-          console.log($('#cardBox'+currentTimeLine.toString()).children(':nth-child('+(index+1).toString()+')'));
           $('#timelineContents'+currentTimeLine.toString()).children(':nth-child('+(index+1).toString()+')').detach();
           $('#cardBox'+currentTimeLine.toString()).children(':nth-child('+(index+1).toString()+')').detach();
           $('#timelineContents'+currentTimeLine.toString()).children().each(
