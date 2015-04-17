@@ -3,9 +3,9 @@
 .brainstormCard{
 	width: 120px;
 	height: 80px;
-	background-color: #fff;
+	background-color: #ccf5a4;
 	border-style: solid;
-	border-radius: 10px;
+	border-radius: 1px;
 	border-color: #4850B7;
 	color: #4850B7;
 	font-family: sans-serif;
@@ -13,6 +13,8 @@
 	margin: auto;
 	margin-top: 15px;
 	margin-bottom: 15px;
+	
+	padding: 5px;
 }
 
 .red {
@@ -69,7 +71,7 @@
 	vertical-align: middle;
 	height: 100px;
 	width: 100px;
-	font-size: 16px;
+	font-size: 12px;
 	color: #eb9054;
 	text-shadow: none;
 }
