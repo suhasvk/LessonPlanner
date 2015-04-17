@@ -20,15 +20,13 @@
     margin-bottom: 15px;
 }
 .evtCard {
-    width: 100%;
-    height: 80%;
+    width: 90%;
+    height: 100%;
     border-radius: 10px;
-    background-color: #C2F496;
+    background-color: #ccf5a4;
     position: relative;
     top: 0px;
     /*margin-left: 10px;*/
-    
-    margin: 10px;
     border-style: solid;
     border-color: #1D5581;
 	border-width: 1px;
@@ -39,30 +37,32 @@
 .timeline {
     position: relative;
     width: 700px;
-    margin-top: 15px;
-    height: 50px;
+    height: 20px;
     border-radius: 5px;
     float: left;
-    background-color: #83B083;
+    background-color: transparent;
     border-style: solid;
     border-color: #1D5581;
 	border-width: 0px;
 }
 
 .textInputArea{
-    width: 100%; 
+    /*width: 100%; 
     height: 50px; 
     font-size: 15pt;
     border-color: #FCC675;
     border-style: solid;
     border-width: 3px;
     border-radius: 15px;
-    margin-top: 15px;
+    margin-top: 15px;*/
+	margin-bottom: 15px;
 }
 
 .cardContainer {
     height: 100%;
     padding: 10px;
+	
+    margin: 10px;
 }
 
 .cardBox {
@@ -77,10 +77,30 @@
 }
 
 .timelineDisplayItem{
-    background-color: #C2F496;
+    background-color: #ff5730;
     border-color: #1D5581;
     border-style: solid;
-    border-width: 3px;
+    border-width: 1px;
+}
+
+.closeButton {
+	position: relative;
+	top: -8;
+}
+
+.cardTimeInfo {
+	margin-right: 5px;
+	color: #ff5730 !important;
+}
+
+.descriptionText {
+	background-color: #ffffe5;
+	height: 80%;
+	padding: 5px;
+	border-width: 1px;
+	border-style: solid;
+    border-color: #9bdb92;
+	margin-top: 3px;
 }
 
 td {
