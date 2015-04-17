@@ -230,9 +230,10 @@ $(document).ready(function(){
     		function(evt){
           $('#resizableTimeline').colResizable({disable:true});
           console.log(evt.data);
-          var index = evt.data.index;
+          var index = parseInt(evt.data.index);
 
           var scaleFactor = evt.data.scaleFactor;
+          console.log(index);
           console.log($('#timelineContents'+currentTimeLine.toString()).children(':nth-child('+(index+1).toString()+')'));
           console.log($('#cardBox'+currentTimeLine.toString()).children(':nth-child('+(index+1).toString()+')'));
           $('#timelineContents'+currentTimeLine.toString()).children(':nth-child('+(index+1).toString()+')').detach();
