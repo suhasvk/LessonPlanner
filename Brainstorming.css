@@ -53,7 +53,7 @@
 .trashcan{
 	position: relative;
 	left: 625px;
-	top: 0px;
+	top: -50px;
 	width: 100px;
 	height: 100px;
 	background-color: #ffcb88;
@@ -64,11 +64,11 @@
 }
 
 #trash-label {
-	position: relative;
 	text-align: center;
-	top: -153px;
-	left: 0px;
-	width: 100%;
+	display: table-cell;
+	vertical-align: middle;
+	height: 100px;
+	width: 100px;
 	font-size: 16px;
 	color: #eb9054;
 	text-shadow: none;
