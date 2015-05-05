@@ -53,11 +53,9 @@ Course = function(name, lessonDuration){
 
 
 	this.timelineList = {};
-	this.currentTimeline = new Timeline(0, lessonDuration);
-	this.timelineList['0'] = this.currentTimeline;
-
+	this.currentTimeline = null;
 	//NOTE: Doesn't represent number of active lessons, just the number of lessons created so far
-	this.lessonCounter = 1;
+	this.lessonCounter = 0;
 
 
 	this.addLesson = function(name){
@@ -72,6 +70,14 @@ Course = function(name, lessonDuration){
 
 		timelineList[lessonCounter.toString()] = newLesson;
 		lessonCounter++;
+
+		data = {
+			index: newLesson.num,
+			name: name
+		};
+
+		this.dispatchCourseEvent('add', data);
+
 	}
 
 	this.removeLesson = function(index){

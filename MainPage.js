@@ -1,5 +1,11 @@
+// exampleCourse = Course('Biology', 60);
 $(function() {
-	$("#tabs").tabs();
-	// $("#OrganizationSidebar").load("Sidebar.html");
-	//$("#sortable").sortable();
+	// exampleCourse.addEventListener('add', function(data){
+
+	// });
+
+
+
+
+	// exampleCourse.addLesson('First Class');
 });

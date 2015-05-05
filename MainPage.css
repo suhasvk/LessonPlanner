@@ -56,7 +56,7 @@ html {
 
 #header-links {
 	position: relative;
-	top: 21px;
+	top: 30px;
 	float: right;
 	pointer-events: none;
 }
@@ -134,9 +134,11 @@ html {
 	font-family: 'Raleway', sans-serif;
 	font-size: 14px;
 	font-weight: normal;
-	padding: 0px; 
+	padding-left:2px;
+	padding-right: 2px; 
 	background: none; 
 	border-width: 0px;
+	z-index: 5;
 }
 
 #main_area {
@@ -217,6 +219,7 @@ html {
 .textInputArea{
 	margin-bottom: 15px;
 	font-size: 14px;
+	padding: 10px;
 }
 
 .cardContainer {
