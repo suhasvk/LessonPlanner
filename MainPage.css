@@ -58,6 +58,7 @@ html {
 	position: relative;
 	top: 21px;
 	float: right;
+	pointer-events: none;
 }
 
 .header-link {
