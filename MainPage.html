@@ -35,71 +35,52 @@
 
     </head>
 	<div id="header-bg"></div>
+	<div id="course-title-bg"></div>
+	<div id="sections-bg"></div>
     <body>
 		<div id="page">
-			<div id="header"><img id="logo" src="logo.svg">
-
+			<div id="header">
+			<img id="logo" src="logo.png">
 				<div id="header-links">
 					<a href="" class="header-link">Home</a>
 					<a href="" class="header-link">My Courses</a>
-					<a href="" class="header-link">My Lessons</a>
-					<a href="" class="header-link">Profile</a>
-					<a href="" class="header-link">Contact</a>
+					<a href="" class="header-link">Account</a>
 					<a href="" class="header-link" id="logout">Log Out</a>
 				</div>
 				<div id="header-underline"></div>
 			</div>
-			
-			<div id="tabs">
-				<ul>
-					<li><a href="#tabs-1">Course Information</a></li>
-					<li><a href="#tabs-2">Brainstorming</a></li>
-					<li><a href="#tabs-3">Lesson Planning</a></li>
-				</ul>
-				<div id="tabs-1">
-					<div id="CourseInfo"></div>
-				</div>
-				<div id="tabs-2">
-					<div id="Brainstorming">
-							<div id="main_area" class="areatwo" >
-							<input id='cardmaker' class="objective-entry-field" placeholder="Enter a learning objective and press enter."></input-->
-							<div id="trash" class="trashcan"><div id="trash-label">TRASH</div></div>
-							</div>
-							<div id="secondary" class="areatwo" >
-							<!-- For the sake of trash bug
-							<div id="l1" class="brainstormCard"> Lesson 1 </div>
-							<div id="l2" class="brainstormCard"> Lesson 2 </div>
-							<div id="l3" class="brainstormCard"> Lesson 3 </div> -->
-							</div>
+			<div id="editing-course">
+				<span id="editing-course-text">Editing Course: <span id="course-title">Intro to Biology</span></span>
+			</div>
+			<table id="contents">
+				<tr>
+				<td id="LessonPlanning">
+					<div class="section-title">Current Class Timeline</div>
+					<div id="main_area">
+
+					<input type="text" id='newItemInputArea' class="textInputArea" placeholder="Enter a learning objective and press enter."></input>
+
+					<table id="resizableTimeline" class="timeline">
+					</table>
+
+					<table id = "cardTable" class = "cardTable">
+					</table>
 					</div>
-				</div>
-				<div id="tabs-3">
-					<div id="LessonPlanning">
-						<div id="main_area" style="width: 75%; height: 100%; float: left; margin: auto;" >
 
-						<input type="text" id='newItemInputArea' class="textInputArea" placeholder="Enter a learning objective and press enter."></input>
-
-						<table id="resizableTimeline" class="timeline">
-						</table>
-
-						<table id = "cardTable" class = "cardTable">
-						</table>
-						</div>
-
-						<div id="sidebar" style=" display:none; float: right; height: 100%; width: 20%; border-color: #86CCDD; border-style: solid; border-radius: 15px; margin-right: 10px;">
-						<div id="l0" class="lessonCard" style="border-color: #EAE853"> Lesson 1 </div>
-						<div id="l1" class="lessonCard"> Lesson 2 </div>
-						</div>
+					<div id="sidebar" style=" display:none; float: right; height: 100%; width: 20%; border-color: #86CCDD; border-style: solid; border-radius: 15px; margin-right: 10px;">
+					<div id="l0" class="lessonCard" style="border-color: #EAE853"> Lesson 1 </div>
+					<div id="l1" class="lessonCard"> Lesson 2 </div>
 					</div>
-				</div>
-				
-				<div id="sidebar">
+				</td>
+				<td id="sidebar">
+					<div class="section-title">Class List</div>
 					<div id="OrganizationSidebar">
-						<input id="classmaker" placeholder="Enter a class name and press enter."></input>
+						<input id="classmaker" class="textInputArea" placeholder="Enter a class name and press enter."></input>
 						<div id="areaOne" class='area'></div>
 					</div>
-				</div>
+				</td>
+				</tr>
 			</div>
 		</div>
-    </body>
+	</body>
 </html>

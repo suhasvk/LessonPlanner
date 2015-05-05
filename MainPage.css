@@ -1,25 +1,49 @@
 html {
-	font-family: 'Maven Pro', sans-serif;
+}
+
+.ui-page {
+	background-color: #b7e1f8;
 }
 
 #page {
-	width: 1200px;
+	position: relative;
+	width: 920px;
 	margin-left: auto;
 	margin-right: auto;
+	top: -165px;
+	padding-left: 10px;
+	padding-right: 10px;
 }
 
 #header-bg {
-	background-color: #9bdb92;
+	background-color: #f4c76a;
 	width: 105%;
-	min-width: 1250px;
+	min-width: 950px;
 	position: absolute;
 	height: 65px;
 	left: -15px;
 }
 
+#course-title-bg {
+	color: white;
+	padding-top: 60px;
+	padding-bottom: 10px;
+	background-color: #37929f;
+	height: 70px;
+}
+
+#sections-bg {
+	height: 30px;
+	background-color: #76c4d0;
+	border: 0px;
+	border-bottom: 1px;
+	border-style: solid;
+	border-color: #37929f;
+}
+
 #header {
 	position: relative;
-	width: 1200px;
+	width: 100%;
 	height: 100px;
 	left: 0px;
 }
@@ -27,19 +51,18 @@ html {
 #logo {
 	position: relative;
 	top: 11px;
-	left: 0px;
+	left: -34px;
 }
 
 #header-links {
 	position: relative;
-	top: 30px;
+	top: 21px;
 	float: right;
 }
 
 .header-link {
-	color: white !important;
+	color: #37929f !important;
 	font-weight: normal !important;
-	
 	font-size: 16px;
 	margin: 15px;
 	font-family: 'Raleway', sans-serif;
@@ -48,19 +71,9 @@ html {
 	border-right: 0px;
 	border-bottom: 6px;
 	border-style: solid;
-	border-color: #6cc57d;
+	border-color: #37929f;
 	text-decoration: none;
-}
-
-#logout { margin-left:100px; margin-right:30px; }
-
-.header-link:hover {
-	color: white;
-	text-shadow:
-    -1px -1px 0 #a2f282,
-    1px -1px 0 #a2f282,
-    -1px 1px 0 #a2f282,
-    1px 1px 0 #a2f282; 
+	text-shadow: none;
 }
 
 #header-underline {
@@ -69,71 +82,239 @@ html {
 	left: 50px;
 	border-width: 1px;
 	border-style: solid;
-	border-color: #6cc57d;
+	border-color: #37929f;
 	width: 1100px;
 }
 
-#tabs {
+#editing-course {
+	color: white;
+	font-size: 24px;
+	height: 70px;
+	font-weight: normal;
+	font-family: 'Raleway', sans-serif;
+	text-decoration: none;
+	text-shadow: none;
 	position: relative;
-	width: 760px;
+	top: 7px;
+}
+
+#editing-course-text {
+	position: relative;
+	top: -15px;
+}
+
+#course-title {
+	font-weight: bold;
+	color: #fff58d;
+}
+
+#logout { margin-left:100px; margin-right:30px; }
+
+/*.header-link:hover {
+	color: white;
+	text-shadow:
+    -1px -1px 0 #a2f282,
+    1px -1px 0 #a2f282,
+    -1px 1px 0 #a2f282,
+    1px 1px 0 #a2f282; 
+}*/
+
+.section-title {
+	color: white;
+	text-shadow: none;
+	font-size: 14pt;
+	position: relative;
+}
+
+#LessonPlanning {
+	width: 60%;
+	margin-right: 10px;
 	top: 0px;
-	height: 600px;
 	font-family: 'Raleway', sans-serif;
 	font-size: 14px;
 	font-weight: normal;
 	padding: 0px; 
-    background: none; 
-    border-width: 0px;
+	background: none; 
+	border-width: 0px;
 }
 
-#tabs .ui-tabs-nav { 
-    padding-left: 0px; 
-    background: transparent; 
-    border-width: 0px 0px 1px 0px; 
-    -moz-border-radius: 0px; 
-    -webkit-border-radius: 0px; 
-    border-radius: 0px;
-	border-color: #9bdb92;
+#main_area {
+	max-width: 600px;
+	height: 490px; 
+	float: left; 
+	margin: auto;
+	overflow: auto;
 }
-
-#tabs .ui-tabs-panel {
-    border-width: 0px 1px 1px 1px;
-	height: 540px;
-	background: #ffffd8;
-	border-color: #9bdb92;
-}
-
-#tabs .ui-state-default {
-	background: #ebffd8;
-	color: #037647;
-	border-color: #9bdb92;
-	margin-right: 10px;
-	height: 36px;
-}
-
-#tabs .ui-state-active {
-	background: #ffffd8;
-	border-color: #9bdb92;
-	height: 33px;
-	top: 3px;
-}
-
-#tabs .ui-state-default a { color: #179276; }
-#tabs .ui-state-hover a { color: #61cd53; }
-#tabs .ui-state-active a { color: #eb8500; }
-
-
-
 
 #sidebar {
-	position: absolute;
-	top: 0px;
-	left: 800px;
-	width: 400px;
+	padding: 0px;
+	padding-left: 10px;
+	position: relative;
+	top: -1;
+}
+
+#areaOne {
+	height: 441px; 
+	overflow: auto;
+}
+
+#contents {
+	position: relative;
 	height: 600px;
+	top: -30px;
+	width: 100%;
+	max-width: 100%;
+}
+
+* {
+    margin-top: auto;
+    font-family: sans-serif;
+    /*overflow: auto;*/
+}
+
+.lessonCard {
+    width: 80%;
+    height: 100px;
+    background-color: #fff;
+    border-style: solid;
+    /*border-radius: 10px;*/
+    border-color: #4850B7;
+    color: #4850B7;
+    font-family: sans-serif;
+    margin: auto;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.evtCard {
+    width: 90%;
+    height: 100%;
+    border-radius: 0px;
+    background-color: #5d5444;
+    position: relative;
+    top: 0px;
+    /*margin-left: 10px;*/
+    border-style: solid;
+    border-color: #1D5581;
+	border-width: 0px;
+	padding: 10px;
+	text-shadow: none;
+}
+
+.timeline {
+    position: relative;
+    width: 600px;
+    height: 20px;
+    border-radius: 5px;
+    float: left;
+    background-color: transparent;
+    border-style: solid;
+    border-color: #1D5581;
+	border-width: 0px;
+}
+
+.textInputArea{
+	margin-bottom: 15px;
+	font-size: 14px;
+}
+
+.cardContainer {
+    height: 100%;
+    padding: 10px;
+	
+    margin: 10px;
+}
+
+.cardBox {
+    top: 10px;
+}
+
+.cardTable{
+    width:100%;
+    height:400px;
+    margin-top: 15px;
+    border-collapse: collapse;
+}
+
+.timelineDisplayItem{
+    background-color: #ff5730;
+    border-color: #1D5581;
+    border-style: solid;
+    border-width: 1px;
+}
+
+.closeButton {
+	position: relative;
+	top: -8;
+}
+
+.cardTimeInfo {
+	margin-right: 5px;
+	color: #ff5730 !important;
+}
+
+.descriptionText {
+	background-color: #ffffe5;
+	height: 80%;
+	padding: 0px;
+	border-width: 0px;
+	border-style: solid;
+    border-color: #9bdb92;
+	margin-top: 3px;
+}
+
+td {
+    vertical-align: top;
+}
+html {
+    height: 100%;
+}
+
+.rightbar{
+	border-color: #86CCDD; 
+	border-style: solid; 
+	border-radius: 10px; 
+	padding: 10px;
+}
+
+.class {
+	font-family: 'Raleway', sans-serif;
+	color: #37929f;
+	background-color: #b7e1f8 !important;
+	border-radius: 0px; 
+	width:100%;
+	height: 10%;
+	display: table;
+	border-style: solid;
+	border-width: 0px;
+	padding: 10px;
+	margin: 5px;
+	font-weight: normal;
+	border-color: #9bdb92;
+	text-shadow: none;
+}
+
+.class:hover{
+	background-color: #CBED59;
 }
 
 
-
-
+.card{
+	width: 95%;
+	background-color: #5d5444;
+	border-style: solid;
+	border-radius: 0px;
+	border-color: #9bdb92;
+	border-width: 0px;
+	display: table-cell;
+	color: white;
+	font-family: sans-serif;
+	float: left;
+	margin: auto;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	padding: 5px 10px;
+	text-shadow: none;
+	font-weight: normal;
+}
 
