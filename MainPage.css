@@ -280,6 +280,21 @@ html {
 	
 }
 
+.descriptionText {
+	/*This is the div where the description text goes in each card*/
+	background-color: #5d5444;
+	height: 350px;
+	padding: 0px;
+	border-width: 0px;
+	border-style: solid;
+    border-color: #9bdb92;
+	margin-top: 5px;
+	position: relative;
+	top: 20px;
+	cursor: pointer;
+}
+
+
 .tempCard {
 	background: transparent;
 	color: #37929f;
@@ -289,20 +304,6 @@ html {
 	padding: 5px;
 	margin: 5px;
 	font-size: 10px;
-}
-
-.descriptionText {
-	/*This is the div where the description text goes in each card*/
-	background-color: #5d5444;
-	height: 400px;
-	padding: 0px;
-	border-width: 0px;
-	border-style: solid;
-    border-color: #9bdb92;
-	margin-top: 5px;
-	position: relative;
-	top: 20px;
-	cursor: pointer;
 }
 
 .dragText {
@@ -315,8 +316,7 @@ html {
 
 .closeButton {
 	/*Close button currently a button obj, but I'll make it a div*/
-	position: relative;
-	top: -8;
+
 }
 
 .cardTimeInfo {
@@ -347,12 +347,16 @@ html {
 	padding: 10px;
 }
 
+#resizableTimeline {
+position: relative;
+top: -20px;
+}
+
 .class {
 	font-family: 'Raleway', sans-serif;
 	color: #37929f;
 	background-color: #b7e1f8 !important;
 	border-radius: 0px; 
-	width:100%;
 	height: 10%;
 	display: table;
 	border-style: solid;
