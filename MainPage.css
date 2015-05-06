@@ -176,20 +176,79 @@ html {
 }
 
 .lessonCard {
-    width: 80%;
+/*    width: 80%;
     height: 100px;
     background-color: #fff;
     border-style: solid;
-    /*border-radius: 10px;*/
+    border-radius: 10px;
     border-color: #4850B7;
     color: #4850B7;
     font-family: sans-serif;
     margin: auto;
     margin-top: 15px;
-    margin-bottom: 15px;
+    margin-bottom: 15px;*/
+}
+
+
+
+.textInputArea{
+	margin-bottom: 15px;
+	font-size: 14px;
+	padding: 10px;
+}
+
+.planningAreaContainer{
+/*This div contains the whole lesson planning area*/
+
+}
+
+.timeline {
+/*This is the timeline display*/
+    position: relative;
+    width: 600px;
+    height: 20px;
+    border-radius: 5px;
+    float: left;
+    background-color: transparent;
+    border-style: solid;
+    border-color: #1D5581;
+	border-width: 0px;
+}
+
+.timelineDisplayItem{
+	/*This is one of the rectangles in the timeline*/
+    background-color: #ff5730;
+    border-color: #1D5581;
+    border-style: solid;
+    border-width: 1px;
+}
+
+.cardTable{
+/*This is a container for all the cards*/
+    width:100%;
+    height:400px;
+    margin-top: 15px;
+    border-collapse: collapse;
+}
+
+.cardBox {
+	/*
+	*These are wrappers for the different lesson's timelines, 
+	*used to show/hide as necessary
+	*/
+    top: 10px;
+}
+
+.cardContainer {
+	/*This is a wrapper that contains each individual card*/
+    height: 100%;
+    padding: 10px;
+	
+    margin: 10px;
 }
 
 .evtCard {
+	/*This is an 'actual' planning/timeline area card*/
     width: 90%;
     height: 100%;
     border-radius: 0px;
@@ -204,60 +263,20 @@ html {
 	text-shadow: none;
 }
 
-.timeline {
-    position: relative;
-    width: 600px;
-    height: 20px;
-    border-radius: 5px;
-    float: left;
-    background-color: transparent;
-    border-style: solid;
-    border-color: #1D5581;
-	border-width: 0px;
-}
-
-.textInputArea{
-	margin-bottom: 15px;
-	font-size: 14px;
-	padding: 10px;
-}
-
-.cardContainer {
-    height: 100%;
-    padding: 10px;
-	
-    margin: 10px;
-}
-
-.cardBox {
-    top: 10px;
-}
-
-.cardTable{
-    width:100%;
-    height:400px;
-    margin-top: 15px;
-    border-collapse: collapse;
-}
-
-.timelineDisplayItem{
-    background-color: #ff5730;
-    border-color: #1D5581;
-    border-style: solid;
-    border-width: 1px;
-}
-
 .closeButton {
+	/*Close button currently a button obj, but I'll make it a div*/
 	position: relative;
 	top: -8;
 }
 
 .cardTimeInfo {
+	/*This displays the time of each card*/
 	margin-right: 5px;
 	color: #ff5730 !important;
 }
 
 .descriptionText {
+	/*This is where the description text goes in each card*/
 	background-color: #ffffe5;
 	height: 80%;
 	padding: 0px;
@@ -265,6 +284,10 @@ html {
 	border-style: solid;
     border-color: #9bdb92;
 	margin-top: 3px;
+}
+
+.descriptionEdig{
+	/*This is for the button that edits the description on a card*/
 }
 
 td {
