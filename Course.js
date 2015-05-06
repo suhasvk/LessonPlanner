@@ -78,9 +78,11 @@ Course = function(name, lessonDuration){
 		}
 
 		this.timelineList[this.lessonCounter.toString()] = newLesson;
+		if (this.lessonCounter == 0){
+				this.currentTimeline = newLesson;
+				this.currentIndex = newLesson.num;
+			}
 		this.lessonCounter++;
-		this.currentTimeline = newLesson;
-		this.currentIndex = newLesson.num;
 		console.log(newLesson);
 		var data = {
 			index: newLesson.num,
@@ -103,7 +105,7 @@ Course = function(name, lessonDuration){
 
 	this.showLesson = function(index){
 		var oldIndex = this.currentTimeline.num;
-		this.currentTimeline = timelineList[index.toString()];
+		this.currentTimeline = this.timelineList[index.toString()];
 		this.currentIndex = parseInt(index);
 		var data = {
 			oldIndex: oldIndex,

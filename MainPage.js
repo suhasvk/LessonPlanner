@@ -60,6 +60,54 @@ formatCard = function(newEvent, description, first){
   );
 }
 
+
+function editableTextBlurred() {
+    var html = $(this).val();
+    var divID = $(this).attr('id');
+    var viewableText = $("<div id=" + divID + " class='class'>");
+    viewableText.html(html);
+    $(this).replaceWith(viewableText);
+    // setup the click event for this new div
+    viewableText.click(divClicked);
+}
+
+/* This function will actually make cards */
+function makecard(idx, text) {
+
+        var item = document.createElement('div');
+        item.id = 'l'+idx;
+        item.appendChild(document.createTextNode(text))
+        $("<div />", { id:'l'+idx, class:"class", html: text })
+       .appendTo("#areaOne");
+
+       //makes default card
+       $("<div />", { id:"card", class:"card",
+        html: "Create more cards near the timeline while this class is selected" })
+       .appendTo("#l"+idx);
+
+        //make the card renameable
+      $("#l"+idx).click(function(evt){
+  		var newIndex = parseInt($(this).attr('id').slice(1));
+  		exampleCourse.showLesson(newIndex);
+      });
+
+      // $('#l'+idx).dblclick(function(evt){
+      // 	    var divHtml = $(this).clone().children().remove().end().text();
+		    // var divID = $(this).attr('id');
+		    // var editableText = $("<textarea id=" + divID + " />");
+		    // editableText.val(divHtml);
+		    // var cards = $(this).children();
+		    // $(cards).detach();
+		    // $(this).replaceWith(editableText);
+		    // editableText.focus();
+		    // // setup the blur event for this new textarea
+		    // editableText.blur(editableTextBlurred);
+		    // $(this).append(cards);
+      // })
+    }
+
+
+
 $(function() {
     $('#newItemInputArea').keypress(
     	function(evt){
@@ -73,6 +121,19 @@ $(function() {
 	    }
     });
 
+	$("#classmaker").keypress(function(e) {
+        
+        if (e.which == 13) {
+             
+            var current = $("#classmaker").val();
+            
+            exampleCourse.addLesson(current);
+
+            $("#classmaker").val("");
+
+
+       }
+    });
 
 	exampleCourse.addEventListener('add', function(evt){
 		var index = evt.data.index;
@@ -106,7 +167,7 @@ $(function() {
 
 		if (parseInt(index) != 0){
 		  cardBox.style.display = "none";
-		  timelineObj.style.display = "none";
+		  // timelineObj.style.display = "none";
 		}
 
 		else {
@@ -114,21 +175,40 @@ $(function() {
 		}
 
 		$('#cardTable').append(cardBox);
+		// console.log('dat');
+		// console.log(evt.data.name);
+		makecard(evt.data.index, evt.data.name);
 	});
 
 	exampleCourse.addEventListener('kill', function(evt){
-		return;
+		var idx = evt.data.toRemove;
+		$('#cardBox'+idx.toString()).detach()
+		$('#timelineContents'+idx.toString()).detach();
+		delete timelineObjectContainer[idx.toString()];
+		$('#l'+idx.toString()).detach();
 	});
 
 	exampleCourse.addEventListener('show', function(evt){
-		return;
+		console.log(evt);
+        $('#resizableTimeline').colResizable({disable:true});
+		$('#timelineContents'+evt.data.oldIndex.toString()).detach();
+		$('#cardBox'+evt.data.oldIndex.toString()).hide();
+		$('#resizableTimeline').append( timelineObjectContainer[evt.data.newIndex.toString()] );
+		// $('#timelineContents'+evt.data.newIndex.toString()).show();
+		$('#cardBox'+evt.data.newIndex.toString()).show();
+        $('#resizableTimeline').colResizable({
+          liveDrag:true,
+          gripInnerHtml:"<div class='grip2'></div>",
+          onResize: dragHandler
+        });
+
+
 	});
 	
 	exampleCourse.addTimelineListener('newEvent',
 		function(evt){
 			console.log(evt);
 			console.log(evt.data.firstAdd);
-			console.log('pasdf');
       //Make timeline things
       if (evt.data.firstAdd){
         var newTimelineItem = document.createElement("td");
@@ -137,8 +217,11 @@ $(function() {
         $('#timelineContents'+exampleCourse.currentIndex.toString()).append(newTimelineItem);
         $('#resizableTimeline').colResizable({
           liveDrag:true,
+          gripInnerHtml:"<div class='grip2'></div>",
           onResize: dragHandler
         });
+
+        $('#l'+exampleCourse.currentIndex.toString()).children().detach();
       }
       else{
         var newTimelineItem = document.createElement("td");
@@ -152,6 +235,7 @@ $(function() {
         newTimelineItem.style.width = (10/exampleCourse.lessonDuration)*parseInt($('#timelineContents').width()).toString() + 'px';
         $('#timelineContents'+exampleCourse.currentIndex.toString()).append(newTimelineItem);
         $('#resizableTimeline').colResizable({
+        	gripInnerHtml:"<div class='grip2'></div>",
           liveDrag:true,
           onResize: dragHandler
         });
@@ -181,8 +265,13 @@ $(function() {
               evt.data.firstAdd
             );
       dragHandler(evt);
-		}
-	);
+		
+
+	$("<div />", { 
+		id:"card", 
+		class:"card", 
+		html: evt.data.description}).appendTo("#l"+exampleCourse.currentIndex.toString());
+	});
 
 	exampleCourse.addTimelineListener('orderChange',
 		function(evt){
@@ -198,6 +287,7 @@ $(function() {
         $($('#timelineContents'+exampleCourse.currentIndex.toString()).children()[newIndex]).before(guy_to_move);
       }
       $('#resizableTimeline').colResizable({
+      	gripInnerHtml:"<div class='grip2'></div>",
         liveDrag:true,
         onResize: dragHandler
       });
@@ -226,6 +316,7 @@ $(function() {
         }
       );
       $('#resizableTimeline').colResizable({
+      	gripInnerHtml:"<div class='grip2'></div>",
         liveDrag:true,
         onResize: dragHandler
       });
