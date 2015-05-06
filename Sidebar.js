@@ -1,59 +1,66 @@
-var i = i;
+var i = 1;
 var j = 0;
 
+/* This function will actually make cards */
+function makecard(name, text) {
 
+        var cardname = name;
+        var classtext = text;
+        //makes the div
+        $("<div />", { id:cardname, class:"card", html: classtext })
+       .appendTo("#areaOne");
+
+       //the custom switch timeline function
+       //This is where I'd load a new timeline
+         function Switchtimeline(classid) {
+            alert("Hello! I am an alert box!! " + classid);
+        }
+
+        //actually load the timeline on click
+      document.getElementById(cardname)
+      .onclick = function() {Switchtimeline(cardname)};
+
+
+        //This makes the class droppable, right now this is
+        //bad coding practice, but it works, although
+        //At this point, we don't have any reason to drop words
+        //I'll comment this out later or change as needed
+      $(".class").droppable({
+          drop: function(event, ui) {
+            //ui.draggable.detach().appendTo($(this));
+
+            
+            //* THIS IS THE WORDS thingy
+            //currently obsolete but harmless
+            var currentclass = "#class" + i;
+            var draggablewords = ui.draggable.html();
+            var currentwords = $(this).html();
+            var newdiv = $("<div />", { id:"objective"+i, class:"card", html: draggablewords })
+            $(this).append(newdiv);
+            /*
+            alert(currentwords + "<br>" + draggablewords);
+            $(this).html(currentwords+"<br>"+draggablewords);
+            */
+
+            ui.draggable.remove();
+
+            j++;
+            
+            
+          }
+        });
+    }
 
 
 $(document).ready(
+    
 
-    /* This function will actually make cards */
-    function makecard(name) {
-                //makes the div
-                $("<div />", { id:"l"+i, class:"card", html: current })
-               .appendTo("#areaOne");
-
-               //the custom switch timeline function
-               //This is where I'd load a new timeline
-                 function Switchtimeline(classid) {
-                    alert("Hello! I am an alert box!! " + classid);
-                }
-
-                //actually load the timeline on click
-              document.getElementById("l"+i).onclick = function() {Switchtimeline("l"+i)};
-
-
-                //This makes the class droppable, right now this is
-                //bad coding practice, but it works, although
-                //At this point, we don't have any reason to drop words
-                //I'll comment this out later or change as needed
-              $(".class").droppable({
-                  drop: function(event, ui) {
-                    //ui.draggable.detach().appendTo($(this));
-
-                    
-                    //* THIS IS THE WORDS thingy
-                    //currently obsolete but harmless
-                    var currentclass = "#class" + i;
-                    var draggablewords = ui.draggable.html();
-                    var currentwords = $(this).html();
-                    var newdiv = $("<div />", { id:"objective"+i, class:"card", html: draggablewords })
-                    $(this).append(newdiv);
-                    /*
-                    alert(currentwords + "<br>" + draggablewords);
-                    $(this).html(currentwords+"<br>"+draggablewords);
-                    */
-
-                    ui.draggable.remove();
-
-                    j++;
-                    
-                    
-                  }
-                });
-            }
+    
+            
 
   function(){
     $("#classmaker").keypress(function(e) {
+        
         if (e.which == 13) {
              if (i==1) {
                 $('#sidebardefault').remove();
@@ -63,11 +70,11 @@ $(document).ready(
             
             
 
-            var current = $("#classmaker").val()
+            var current = $("#classmaker").val();
 
-
+            
             //Insert call to cardmaker here
-            cardmaker("l"+i);
+            makecard("l"+i, current);
               
 
 
