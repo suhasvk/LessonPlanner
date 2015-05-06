@@ -6,8 +6,12 @@ $(document).ready(
   function(){
     $("#classmaker").keypress(function(e) {
         if (e.which == 13) {
+             if (i==0) {
+                $('#sidebardefault').remove();
+            }
+
             var current = $("#classmaker").val()
-            $("<div />", { id:"l"+i, class:"class", html: current })
+            $("<div />", { id:"l"+i, class:"card", html: current })
             .appendTo("#areaOne");
               $("#classmaker").val("");
 
