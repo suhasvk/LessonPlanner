@@ -48,15 +48,18 @@ $(document).ready(function(){
   tag.appendChild(document.createTextNode('minutes'));
   tag.className = "numberTag";
 
-  var text = document.createElement("p");
+  var text = document.createElement("div");
   $(text).html("Description: <br>");
-  text.appendChild(document.createTextNode(description));
+  var inputArea = document.createElement("textarea");
+  $(inputArea).val(description);
+  $(text).append(inputArea);
   text.className = "descriptionText";
 
-  var closeButton = document.createElement("button");
-  closeButton.appendChild(document.createTextNode("x"));
+  var closeButton = document.createElement("div");
   closeButton.className = "closeButton";
 
+  var editButton = document.createElement("div");
+  editButton.className = "editButton";
   //ASSEMBLE!
   console.log(number);
   $(timeInfo).append(number);
@@ -65,6 +68,7 @@ $(document).ready(function(){
   $(newEvent).append(timeInfo);
   $(newEvent).append(text);
   $(newEvent).append(closeButton);
+  $(newEvent).append(editButton);
 
   $(closeButton).click(
     function(evt){
