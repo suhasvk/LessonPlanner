@@ -276,7 +276,7 @@ html {
 }
 
 .descriptionText {
-	/*This is where the description text goes in each card*/
+	/*This is the div where the description text goes in each card*/
 	background-color: #ffffe5;
 	height: 80%;
 	padding: 0px;
@@ -286,7 +286,11 @@ html {
 	margin-top: 3px;
 }
 
-.descriptionEdig{
+.descriptionInputArea {
+	/*This is the actual description text input area*/
+}
+
+.editButton{
 	/*This is for the button that edits the description on a card*/
 }
 
