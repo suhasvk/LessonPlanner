@@ -181,7 +181,11 @@ $(function() {
 	});
 
 	exampleCourse.addEventListener('kill', function(evt){
-		return;
+		var idx = evt.data.toRemove;
+		$('#cardBox'+idx.toString()).detach()
+		$('#timelineContents'+idx.toString()).detach();
+		delete timelineObjectContainer[idx.toString()];
+		$('#l'+idx.toString()).detach();
 	});
 
 	exampleCourse.addEventListener('show', function(evt){
