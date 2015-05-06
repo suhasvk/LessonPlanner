@@ -47,6 +47,7 @@ function makecard(name, text) {
 
         //make the card renameable
       $("#"+cardname).click(divClicked);
+      j++;
 
       
 
