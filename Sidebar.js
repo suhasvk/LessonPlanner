@@ -32,6 +32,11 @@ function makecard(name, text) {
         //makes the div
         $("<div />", { id:cardname, class:"class", html: classtext })
        .appendTo("#areaOne");
+       //makes default card
+       $("<div />", { id:"card"+j, class:"card",
+        html: "Create more cards near the timeline while this class is selected" })
+       .appendTo("#"+cardname);
+
 
        //the custom switch timeline function
        //This is where I'd load a new timeline
