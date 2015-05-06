@@ -1,5 +1,28 @@
 var i = 1;
-var j = 0;
+var j = 1;
+
+/* This function makes clicked divs editable, and then back to divs
+once done. It's a pair with editableTextBlurred. */
+function divClicked() {
+    var divHtml = $(this).html();
+    var divID = $(this).attr('id');
+    var editableText = $("<textarea id=" + divID + " />");
+    editableText.val(divHtml);
+    $(this).replaceWith(editableText);
+    editableText.focus();
+    // setup the blur event for this new textarea
+    editableText.blur(editableTextBlurred);
+}
+
+function editableTextBlurred() {
+    var html = $(this).val();
+    var divID = $(this).attr('id');
+    var viewableText = $("<div id=" + divID + " class='class'>");
+    viewableText.html(html);
+    $(this).replaceWith(viewableText);
+    // setup the click event for this new div
+    viewableText.click(divClicked);
+}
 
 /* This function will actually make cards */
 function makecard(name, text) {
@@ -13,13 +36,13 @@ function makecard(name, text) {
        //the custom switch timeline function
        //This is where I'd load a new timeline
          function Switchtimeline(classid) {
-            alert("Hello! I am an alert box!! " + classid);
+            //alert("Hello! I am an alert box!! " + classid);
         }
 
-        //actually load the timeline on click
-      document.getElementById(cardname)
-      .onclick = function() {Switchtimeline(cardname)};
+        //make the card renameable
+      $("#"+cardname).click(divClicked);
 
+      
 
         //This makes the class droppable, right now this is
         //bad coding practice, but it works, although
@@ -53,12 +76,9 @@ function makecard(name, text) {
 
 
 $(document).ready(
-    
-
-    
-            
-
   function(){
+
+    $("#l0").click(divClicked);
     $("#classmaker").keypress(function(e) {
         
         if (e.which == 13) {
