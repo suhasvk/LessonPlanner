@@ -7,7 +7,7 @@ function makecard(name, text) {
         var cardname = name;
         var classtext = text;
         //makes the div
-        $("<div />", { id:cardname, class:"card", html: classtext })
+        $("<div />", { id:cardname, class:"class", html: classtext })
        .appendTo("#areaOne");
 
        //the custom switch timeline function
