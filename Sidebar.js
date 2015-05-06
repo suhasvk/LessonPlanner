@@ -86,7 +86,7 @@ $(document).ready(
     $("#l0").click(divClicked);
     $("#classmaker").keypress(function(e) {
         
-        if (e.which == 13) {
+        if (e.which == 13  && $(this).val().length > 0) {
              if (i==1) {
                 $('#sidebardefault').remove();
             }
