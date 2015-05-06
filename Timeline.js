@@ -28,6 +28,8 @@ var Timeline = function(num, totalTime){
 			'firstAdd': (this.itemList.length == 1),
 			'description': name
 		};
+		console.log('data');
+		console.log(data);
 		this.dispatchTimelineEvent('newEvent',data);
 	}
 	

@@ -8,7 +8,9 @@ Course = function(name, lessonDuration){
     //
 
 	this.allHandlers = new Array();
-	
+	this.timelineHandlers = new Array();
+	this.timelineHandlerTypes = []
+
 	/**
 	 * Dispatch a new event to all the event listeners of a given event type
 	 */
@@ -39,14 +41,17 @@ Course = function(name, lessonDuration){
 	this.addTimelineListener = function(type, handler){
 
 		//Stores new listener to add to future timelines
-		if (!this.timelineHandlers[eventType])
-			this.timelineHandlers[eventType] = [];
-		this.timelineHandlers[eventType].push(handler);
+		if (!this.timelineHandlers[type]);
+			this.timelineHandlers[type] = [];
+			this.timelineHandlerTypes.push(type);
+		this.timelineHandlers[type].push(handler);
 
 		//Adds new listener to current timelines
-		for (tl in timelineList){
+		for (tl in this.timelineList){
 			tl.addEventListener(type, listener);
 		}
+
+		console.log(this.timelineHandlers);
 	}
 
 	//---------------------------------
@@ -56,24 +61,31 @@ Course = function(name, lessonDuration){
 	this.currentTimeline = null;
 	//NOTE: Doesn't represent number of active lessons, just the number of lessons created so far
 	this.lessonCounter = 0;
-
+	this.currentIndex = null;
+	// this.activeTimelines = [];
 
 	this.addLesson = function(name){
-		var newLesson = Timeline(lessonCounter, this.lessonDuration);
+		console.log(name);
+		var newLesson = new Timeline(this.lessonCounter, this.lessonDuration);
 
-		for (var i = 0; i < this.timelineHandlers.length; i++){
-			var type = this.timelineHandlers[i];
-			for (var j = 0; j < this.timelineHandlers.length; j++){
+		for (type in this.timelineHandlers){
+			// var type = this.timelineHandlers[i];
+			console.log(type);
+			for (var j = 0; j < this.timelineHandlers[type].length; j++){
 				newLesson.addEventListener(type, this.timelineHandlers[type][j])
 			}
+			console.log('flag')
 		}
 
-		timelineList[lessonCounter.toString()] = newLesson;
-		lessonCounter++;
-
-		data = {
+		this.timelineList[this.lessonCounter.toString()] = newLesson;
+		this.lessonCounter++;
+		this.currentTimeline = newLesson;
+		this.currentIndex = newLesson.num;
+		console.log(newLesson);
+		var data = {
 			index: newLesson.num,
-			name: name
+			name: name,
+			timeline: newLesson
 		};
 
 		this.dispatchCourseEvent('add', data);
@@ -83,7 +95,7 @@ Course = function(name, lessonDuration){
 	this.removeLesson = function(index){
 		var removed = lessonList[index.toString()];
 		delete lessonList[index.toString()];
-		data{
+		var data = {
 			toRemove: removed.num
 		};
 		this.dispatchCourseEvent('kill', data);
@@ -92,7 +104,8 @@ Course = function(name, lessonDuration){
 	this.showLesson = function(index){
 		var oldIndex = this.currentTimeline.num;
 		this.currentTimeline = timelineList[index.toString()];
-		data = {
+		this.currentIndex = parseInt(index);
+		var data = {
 			oldIndex: oldIndex,
 			newIndex: index
 		};
