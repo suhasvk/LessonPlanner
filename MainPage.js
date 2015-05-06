@@ -31,9 +31,10 @@ formatCard = function(newEvent, description, first){
   tag.className = "numberTag";
 
   var text = document.createElement("div");
-  $(text).html("Description: <br>");
+  $(text).html('<div class="dragText">Drag to rearrange.</div>');
   var inputArea = document.createElement("textarea");
   $(inputArea).val(description);
+	inputArea.className = "descriptionTextArea";
   $(text).append(inputArea);
   text.className = "descriptionText";
 
@@ -81,7 +82,7 @@ function makecard(idx, text) {
        .appendTo("#areaOne");
 
        //makes default card
-       $("<div />", { id:"card", class:"card",
+       $("<div />", { id:"tempCard", class:"tempCard",
         html: "Create more cards near the timeline while this class is selected" })
        .appendTo("#l"+idx);
 
@@ -174,7 +175,7 @@ $(function() {
 		  $('#resizableTimeline').append(timelineObj);
 		}
 
-		$('#cardTable').append(cardBox);
+		$('#resizableTimeline').append(cardBox);
 		// console.log('dat');
 		// console.log(evt.data.name);
 		makecard(evt.data.index, evt.data.name);
